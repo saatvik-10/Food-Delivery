@@ -17,7 +17,7 @@ const App = () => {
         <Route path='/cart' element={<Cart />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/about' element={<About />} />
-        <Route path='/privacy & policy' element={<PP />} />
+        <Route path='/privacy&policy' element={<PP />} />
       </Routes>
     </Layout>
   );
