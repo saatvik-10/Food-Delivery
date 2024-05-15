@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
 import { SheetTrigger, SheetContent, Sheet } from './ui/sheet';
 import logo from './images/cook.png';
