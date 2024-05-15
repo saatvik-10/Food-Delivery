@@ -5,7 +5,7 @@ const PP = () => {
   return (
     <div className='container flex flex-col items-center px-6 mx-auto mt-10 space-y-0 md:space-y-0 md:grid md:grid-cols-2'>
       <div className=''>
-        <img src={img} alt='' className='pb-20' />
+        <img src={img} alt='' className='md:pb-20 pb-4' />
       </div>
       <div className=''>
         <h2 className='text-3xl underline mb-2'>Privacy Policy</h2>
