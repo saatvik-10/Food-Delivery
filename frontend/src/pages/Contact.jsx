@@ -1,5 +1,6 @@
 import React from 'react';
 import image from '../components/images/contact/contact.jpg';
+import { Link } from 'react-router-dom';
 
 const About = () => {
   return (
@@ -17,11 +18,17 @@ const About = () => {
         <h1 className='text-3xl underline mb-3'>Customer Support Hours:</h1>
         Monday - Friday: 9:00 AM - 6:00 PM (IST)
         <br />
-         Saturday - Sunday: Closed
+        Saturday - Sunday: Closed
         <h1 className='text-3xl underline my-3'>Contact Information:</h1>
-        Phone: 1234567890 
+        Phone: 1234567890
         <br />
-        Email: foodyzzz@gmail.com
+        Email:
+        <Link
+          to='https://mail.google.com/mail/?view=cm&fs=1&to=foodyzzz@gmail.com'
+          target='_blank'
+        >
+          foodyzzz@gmail.com
+        </Link>
         <p className='text-4xl mt-4'>
           Thank you for choosing <b>FoodyZzz</b> We look forward to hearing from
           you!
