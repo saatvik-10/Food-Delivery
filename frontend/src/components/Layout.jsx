@@ -1,13 +1,15 @@
-import React from 'react';
-import Header from './Header';
-import Footer from './Footer';
-import '../index.css';
+import React from "react";
+import Header from "./Header";
+import Footer from "./Footer";
+import "../index.css";
 
 const Layout = ({ children }) => {
   return (
-    <div>
+    <div className="">
       <Header />
-      <div className='content container mt-4'>{children}</div>
+      <div className="container flex h-[100svh] items-center justify-center overflow-y-hidden">
+        {children}
+      </div>
       <Footer />
     </div>
   );

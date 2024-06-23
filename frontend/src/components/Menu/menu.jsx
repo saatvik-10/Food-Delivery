@@ -10,7 +10,7 @@ export default function MenuCardsVegStarter(props) {
       <VegStarters title={'Veg Starters'} />
       <Carousel plugins={[Autoplay({ delay: 2800 })]} className='w-full'>
         <CarouselContent>
-          {Array.from({ length: 8 }).map((_, index) => (
+          {Array.from({ length: 6 }).map((_, index) => (
             <CarouselItem key={index} className='md:basis-1/2 lg:basis-1/3'>
               <div className='p-1'>
                 <Card>
