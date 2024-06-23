@@ -1,72 +1,72 @@
-import { Link } from "react-router-dom";
-import { Button } from "./ui/button";
-import { SheetTrigger, SheetContent, Sheet } from "./ui/sheet";
-import logo from "./images/cook.png";
-import { LogIn, ShoppingBag } from "lucide-react";
+import { Link } from 'react-router-dom';
+import { Button } from './ui/button';
+import { SheetTrigger, SheetContent, Sheet } from './ui/sheet';
+import logo from './images/cook.png';
+import { LogIn, ShoppingBag } from 'lucide-react';
 
 export default function Component() {
   return (
-    <div className="fixed top-0 flex w-full items-center justify-between bg-gray-900 px-4 py-2">
-      <Link className="flex items-center gap-1" to="/">
-        <img src={logo} alt="" className="size-14" />
-        <span className="text-lg font-semibold text-white">FoodyZzz</span>
+    <div className='flex fixed top-0 w-full items-center justify-between px-4 py-2 bg-gray-900'>
+      <Link className='flex items-center gap-1' to='/'>
+        <img src={logo} alt='' className='size-14' />
+        <span className='text-lg font-semibold text-white'>FoodyZzz</span>
       </Link>
-      <div className="mr-5 hidden gap-4 text-white md:flex">
+      <div className='hidden md:flex gap-4 text-white mr-5'>
         <Link
-          className="text-lg font-medium underline-offset-4 hover:underline"
-          to="/"
+          className='text-lg font-medium hover:underline underline-offset-4'
+          to='/'
         >
           Home
         </Link>
         <Link
-          className="text-lg font-medium underline-offset-4 hover:underline"
-          to="/menu"
+          className='text-lg font-medium hover:underline underline-offset-4'
+          to='/menu'
         >
           Menu
         </Link>
         <Link
-          className="flex items-center gap-2 text-lg font-medium underline-offset-4 hover:underline"
-          to="/cart"
+          className='flex gap-2 text-lg items-center font-medium hover:underline underline-offset-4'
+          to='/cart'
         >
           Cart
           <ShoppingBag size={17} />
         </Link>
       </div>
-      <div className="mr-5 hidden gap-4 text-white md:flex">
-        <Button className="gap-2 text-lg font-medium">
+      <div className='hidden md:flex gap-4 text-white mr-5'>
+        <Button className='gap-2 text-lg font-medium'>
           <LogIn />
           Login
         </Button>
       </div>
       <Sheet>
         <SheetTrigger asChild>
-          <Button className="lg:hidden" size="icon" variant="outline">
-            <MenuIcon className="h-6 w-6" />
-            <span className="sr-only">Toggle navigation menu</span>
+          <Button className='lg:hidden' size='icon' variant='outline'>
+            <MenuIcon className='h-6 w-6' />
+            <span className='sr-only'>Toggle navigation menu</span>
           </Button>
         </SheetTrigger>
-        <SheetContent side="right">
-          <div className="grid w-[200px] gap-y-3 p-3">
+        <SheetContent side='right'>
+          <div className='grid gap-y-3 w-[200px] p-3'>
             <Link
-              className="text-lg font-medium underline-offset-4 hover:underline"
-              to="/"
+              className='text-lg font-medium hover:underline underline-offset-4'
+              to='/'
             >
               Home
             </Link>
             <Link
-              className="text-lg font-medium underline-offset-4 hover:underline"
-              to="/menu"
+              className='text-lg font-medium hover:underline underline-offset-4'
+              to='/menu'
             >
               Menu
             </Link>
             <Link
-              className="text-lg font-medium underline-offset-4 hover:underline"
-              to="/cart"
+              className='text-lg font-medium hover:underline underline-offset-4'
+              to='/cart'
             >
               Cart
             </Link>
           </div>
-          <Button className="gap-2 bg-none text-lg font-medium">
+          <Button className='gap-2 text-lg font-medium bg-none'>
             <LogIn />
             Login
           </Button>
@@ -80,19 +80,19 @@ function MenuIcon(props) {
   return (
     <svg
       {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      xmlns='http://www.w3.org/2000/svg'
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke='currentColor'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
     >
-      <line x1="4" x2="20" y1="12" y2="12" />
-      <line x1="4" x2="20" y1="6" y2="6" />
-      <line x1="4" x2="20" y1="18" y2="18" />
+      <line x1='4' x2='20' y1='12' y2='12' />
+      <line x1='4' x2='20' y1='6' y2='6' />
+      <line x1='4' x2='20' y1='18' y2='18' />
     </svg>
   );
 }
