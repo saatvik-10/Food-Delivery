@@ -9,7 +9,7 @@ const About = () => {
         <img src={image} alt="" className="md:h-60" />
       </div>
       <div className="text-xl">
-        <p className="mb-3 text-lg md:text-2xl">
+        <p className="mb-2 text-lg md:text-2xl">
           We value your feedback and inquiries. Please feel free to reach out to
           us with any questions, concerns, or feedback you may have. Our
           dedicated customer support team is here to assist you.
