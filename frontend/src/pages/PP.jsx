@@ -8,7 +8,7 @@ const PP = () => {
         <img src={img} alt="" className="mb-2 hidden h-56 md:block" />
       </div>
       <div className="">
-        <h2 className="mb-1 text-lg font-bold md:text-3xl">Privacy Policy</h2>
+        <h2 className="mb-1 text-2xl font-bold md:text-3xl">Privacy Policy</h2>
         <p className="mb-3 text-sm md:text-base">
           At <b className="text-xl text-orange-600">FoodyZzz</b>, we are
           committed to protecting your privacy and ensuring the security of your
