@@ -3,7 +3,7 @@ import img from "../components/images/pp/pp.svg";
 
 const PP = () => {
   return (
-    <div className="container flex h-[100svh] flex-col items-center justify-center pt-24 md:space-y-0 md:pt-0">
+    <div className="container flex flex-col items-center justify-center pt-24 md:space-y-0 md:pt-0">
       <div className="">
         <img src={img} alt="" className="mb-2 hidden h-56 md:block" />
       </div>

@@ -3,7 +3,7 @@ import logo from "./images/cook.png";
 
 export default function Footer() {
   return (
-    <footer className="relative bottom-0 mt-2 w-full bg-gray-900 py-4 text-gray-400 md:fixed md:mt-0 md:py-2 lg:fixed">
+    <footer className="relative bottom-0 mt-2 w-full bg-gray-900 py-4 text-gray-400 md:fixed md:mt-0 md:py-2 lg:relative">
       <div className="container mx-auto flex flex-col items-center justify-between gap-y-2 px-4 md:flex-row md:px-6">
         <div className="flex items-center">
           <img src={logo} alt="" className="size-14" />

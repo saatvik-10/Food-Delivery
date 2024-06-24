@@ -7,7 +7,7 @@ const Layout = ({ children }) => {
   return (
     <div className="">
       <Header />
-      <div className="container flex h-[100svh] items-center justify-center overflow-y-hidden">
+      <div className="container flex items-center justify-center overflow-y-hidden py-24">
         {children}
       </div>
       <Footer />

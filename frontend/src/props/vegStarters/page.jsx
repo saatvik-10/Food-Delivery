@@ -1,11 +1,11 @@
 import React from "react";
 import MenuCards from "../../components/Menu/MenuCards";
-import Achaap from "../../components/images/menu/VegItems/Achaap.png";
-import Tchaap from "../../components/images/menu/VegItems/Tchaap.jpg";
-import Mroom from "../../components/images/menu/VegItems//Mroom.jpg";
-import Ptikka from "../../components/images/menu/VegItems//Ptikka.png";
-import HBKebab from "../../components/images/menu/VegItems/HBKebab.jpg";
-import Taloo from "../../components/images/menu/VegItems/Taloo.jpg";
+import Achaap from "../../components/images/menu/VegItems/Starters/Achaap.png";
+import Tchaap from "../../components/images/menu/VegItems/Starters/Tchaap.jpg";
+import Mroom from "../../components/images/menu/VegItems/Starters/Mroom.jpg";
+import Ptikka from "../../components/images/menu/VegItems/Starters/Ptikka.png";
+import HBKebab from "../../components/images/menu/VegItems/Starters/HBKebab.jpg";
+import Taloo from "../../components/images/menu/VegItems/Starters/Taloo.jpeg";
 
 const carouselItems = [
   {
@@ -48,8 +48,8 @@ const carouselItems = [
 
 export default function VegStarters({ title }) {
   return (
-    <div className="pt-20">
-      <h2 className="my-3 flex items-center justify-center font-serif text-6xl font-semibold text-orange-600">
+    <div className="">
+      <h2 className="my-3 flex items-center justify-center font-serif text-2xl font-semibold text-orange-600 md:text-6xl">
         {title}
       </h2>
       <MenuCards carouselItems={carouselItems} />

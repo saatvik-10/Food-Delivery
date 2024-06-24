@@ -11,7 +11,6 @@ import { Button } from "../ui/button";
 export default function MenuCards({ carouselItems, title }) {
   return (
     <div>
-      {/* <VegStarters title={'Veg Starters'} /> */}
       <Carousel plugins={[Autoplay({ delay: 3000 })]} className="w-full">
         <CarouselContent>
           {carouselItems.map((items, index) => (
@@ -27,10 +26,10 @@ export default function MenuCards({ carouselItems, title }) {
                         src={items.image}
                       />
                     </div>
-                    <span className="text-3xl font-semibold text-gray-900">
+                    <span className="text-xl md:text-3xl font-semibold text-gray-900">
                       {items.subTitle}
                     </span>
-                    <p className="text-gray-500">{items.description}</p>
+                    <p className="text-sm md:text-base text-gray-500">{items.description}</p>
                     <div className="flex justify-end">
                       <Button className="w-max rounded-md bg-gray-900 text-center">
                         Add to Cart

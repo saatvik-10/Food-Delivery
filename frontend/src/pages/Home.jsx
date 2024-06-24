@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
-    <div className="container flex h-[100svh] flex-col-reverse px-6 md:h-auto md:flex-row md:space-y-0 lg:flex-row">
+    <div className="container flex flex-col-reverse px-6 md:h-auto md:flex-row md:space-y-0 lg:flex-row">
       <div className="flex flex-col space-y-6 md:w-1/2 md:space-y-12">
         <h1 className="my-4 max-w-lg text-center text-5xl font-bold text-orange-600 md:my-0 md:text-left md:text-8xl">
           FoodyZzz...
