@@ -3,7 +3,7 @@ import image from "../components/images/about/about.jpg";
 
 const About = () => {
   return (
-    <div className="container flex flex-col items-center justify-center pt-20 md:space-y-0 md:pt-0">
+    <div className="container flex flex-col items-center justify-center md:space-y-0 md:pt-0">
       <div className="">
         <img src={image} alt="" className="md:mb-4 md:h-80" />
       </div>
