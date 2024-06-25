@@ -9,6 +9,7 @@ import About from "./pages/About.jsx";
 import PP from "./pages/PP.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
+import ForgotPswdCon from "./pages/ForgotPswdCon.jsx";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/privacy&policy" element={<PP />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/forgot-password-confirmation" element={<ForgotPswdCon />} />
       </Routes>
     </Layout>
   );

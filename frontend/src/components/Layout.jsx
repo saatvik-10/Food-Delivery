@@ -8,6 +8,7 @@ const Layout = ({ children }) => {
   const location = useLocation();
   const loginPath = "/login";
   const registerPath = "/register";
+  const fPswdConPath = "/forgot-password-confirmation";
 
   return (
     <div className="">
@@ -19,13 +20,16 @@ const Layout = ({ children }) => {
         <span className="mt-20 flex items-center justify-center text-center font-serif text-3xl font-bold text-red-700 md:text-5xl">
           JOIN US AND SAVOUR THE FLAVOUR!
         </span>
+      ) : location.pathname === fPswdConPath ? (
+        ""
       ) : (
         <Header />
       )}
 
       <div className="container flex overflow-y-hidden py-24">{children}</div>
       {location.pathname !== loginPath &&
-        location.pathname !== registerPath && <Footer />}
+        location.pathname !== registerPath &&
+        location.pathname !== fPswdConPath && <Footer />}
     </div>
   );
 };
