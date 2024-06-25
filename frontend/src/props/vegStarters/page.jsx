@@ -10,7 +10,7 @@ import Taloo from "../../components/images/menu/VegItems/Starters/Taloo.jpeg";
 const carouselItems = [
   {
     image: Achaap,
-    subTitle: "Afgani Soya Chaap",
+    subTitle: "Afghani Soya Chaap",
     description:
       "Grilled dish from the Afghan cuisine, this chaap is seasoned with aromatic spices for a rich and savory flavor profile.",
   },
