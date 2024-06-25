@@ -5,6 +5,7 @@ import VegMainCourse from "../props/vegMainCourse/page";
 import NonVegStarter from "../props/nonVegStarters/page";
 import NonVegMainCourse from "../props/nonVegMainCourse/page";
 import Breads from "../props/Breads/page";
+import RiceItems from "../props/Rice/page";
 
 function Menu() {
   return (
@@ -19,6 +20,7 @@ function Menu() {
       <Separator className="my-16" />
       <Breads title={"BREADS"} />
       <Separator className="my-16" />
+      <RiceItems title={"RICE"} />
     </div>
   );
 }
