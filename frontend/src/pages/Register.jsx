@@ -18,12 +18,12 @@ export default function Register() {
           Enter your information to create an account
         </CardDescription>
       </CardHeader>
-      <CardContent className="space-y-2">
+      <CardContent className="space-y-1">
         <div className="space-y-1">
           <Label htmlFor="full-name">Full name</Label>
           <Input id="full-name" placeholder="John Doe" required />
         </div>
-        <div className="space-y-2">
+        <div className="space-y-1">
           <Label htmlFor="email">Email</Label>
           <Input
             id="email"
@@ -32,13 +32,20 @@ export default function Register() {
             required
           />
         </div>
-        <div className="space-y-2">
+        <div className="space-y-1">
           <Label htmlFor="password">Password</Label>
           <Input id="password" type="password" required />
         </div>
-        <div className="space-y-2">
+        <div className="space-y-1">
           <Label htmlFor="confirm-password">Confirm Password</Label>
           <Input id="confirm-password" type="password" required />
+        </div>
+        <div className="space-y-1">
+          <div className="flex flex-col space-y-1 font-medium mt-2">
+            <Label>What is that one Date ?</Label>
+            <span className="text-xs text-gray-500">(For Forgot Password)</span>
+          </div>
+          <Input id="ans" type="text" required />
         </div>
         <Button className="w-full bg-gray-900">Register</Button>
       </CardContent>

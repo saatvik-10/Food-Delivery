@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
           WELCOME BACK! LOGIN TO RELISH YOUR FAVORITES
         </span>
       ) : location.pathname === registerPath ? (
-        <span className="mt-20 flex items-center justify-center text-center font-serif text-3xl font-bold text-red-700 md:text-5xl">
+        <span className="mt-8 flex items-center justify-center text-center font-serif text-3xl font-bold text-red-700 md:text-5xl">
           JOIN US AND SAVOUR THE FLAVOUR!
         </span>
       ) : location.pathname === fPswdConPath ? (
