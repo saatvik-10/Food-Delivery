@@ -18,7 +18,7 @@ const reviews = [
     name: "Ishan Magarde",
     date: "Nov 26, 2024",
     review:
-      "I had a fantastic experience ordering from this website. The interface is user-friendly, making it easy to browse through the wide variety of dishes available. My order arrived promptly, and the food was hot, fresh, and bursting with flavor. The attention to detail and quality of service were impressive. I will definitely be recommending this to my friends and family!",
+      "I had a fantastic experience ordering from this website. The interface is user-friendly, making it easy to browse through the wide variety of dishes available. My order arrived promptly, and the food was hot, fresh, and bursting with flavor. The attention to detail and quality of service were impressive. I will definitely be recommending this to my family and friends!",
   },
 ];
 
