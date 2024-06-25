@@ -38,8 +38,8 @@ export default function Login() {
             </Link>
           </div>
           <div>
-            <Link to="/register" className="text-sm">
-              New Here ? Register and join the Foody gang
+            <Link to="/register" className="text-sm text-blue-700">
+              New Here ? Click here to Register
             </Link>
           </div>
           <Button type="submit" className="w-full bg-gray-900">
