@@ -33,10 +33,10 @@ export default function Component() {
         </Link>
       </div>
       <div className="mr-5 hidden gap-4 text-white md:flex">
-        <Button className="gap-2 text-lg font-medium">
+        <Link to="/login" className="flex gap-2 text-lg font-medium">
           <LogIn />
           Login
-        </Button>
+        </Link>
       </div>
       <Sheet>
         <SheetTrigger asChild>
