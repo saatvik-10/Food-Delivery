@@ -26,10 +26,12 @@ export default function MenuCards({ carouselItems, title }) {
                         src={items.image}
                       />
                     </div>
-                    <span className="text-xl md:text-3xl font-semibold text-gray-900">
+                    <span className="text-xl font-semibold text-gray-900 md:text-3xl">
                       {items.subTitle}
                     </span>
-                    <p className="text-sm md:text-base text-gray-500">{items.description}</p>
+                    <p className="text-sm text-gray-500 md:text-base">
+                      {items.description}
+                    </p>
                     <div className="flex justify-end">
                       <Button className="w-max rounded-md bg-gray-900 text-center">
                         Add to Cart

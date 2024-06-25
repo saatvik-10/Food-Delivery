@@ -5,11 +5,11 @@ import VegMainCourse from "../props/vegMainCourse/page";
 
 function Menu() {
   return (
-    <div className="container ">
+    <div className="container">
       <VegStarters title={"VEG STARTERS"} />
-      <Separator className="my-8" />
-      <VegMainCourse title={'VEG MAIN COURSE'} />
-      <Separator className="my-8" />
+      <Separator className="my-16" />
+      <VegMainCourse title={"VEG MAIN COURSE"} />
+      <Separator className="my-16" />
     </div>
   );
 }
