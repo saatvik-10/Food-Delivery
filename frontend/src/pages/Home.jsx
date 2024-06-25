@@ -1,7 +1,7 @@
 import React from "react";
 import img1 from "../components/images/home/hfood.png";
 import { Link } from "react-router-dom";
-import Reviews from "../components/images/home/Reviews";
+import Reviews from "../props/HomeProps/Reviews";
 
 export default function Home() {
   return (
