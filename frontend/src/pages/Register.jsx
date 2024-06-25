@@ -41,7 +41,7 @@ export default function Register() {
           <Input id="confirm-password" type="password" required />
         </div>
         <div className="space-y-1">
-          <div className="flex flex-col space-y-1 font-medium mt-2">
+          <div className="mt-2 flex flex-col space-y-1 font-medium">
             <Label>What is that one Date ?</Label>
             <span className="text-xs text-gray-500">(For Forgot Password)</span>
           </div>
