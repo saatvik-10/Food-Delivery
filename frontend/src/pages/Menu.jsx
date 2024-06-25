@@ -3,6 +3,7 @@ import { Separator } from "../components/ui/separator";
 import VegStarters from "../props/vegStarters/page";
 import VegMainCourse from "../props/vegMainCourse/page";
 import NonVegStarter from "../props/nonVegStarters/page";
+import NonVegMainCourse from "../props/nonVegMainCourse/page";
 
 function Menu() {
   return (
@@ -12,6 +13,8 @@ function Menu() {
       <VegMainCourse title={"VEG MAIN COURSE"} />
       <Separator className="my-16" />
       <NonVegStarter title={"NON-VEG STARTERS"} />
+      <Separator className="my-16" />
+      <NonVegMainCourse title={"NON-VEG MAIN COURSE"} />
       <Separator className="my-16" />
     </div>
   );
