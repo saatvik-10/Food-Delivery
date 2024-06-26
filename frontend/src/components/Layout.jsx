@@ -9,6 +9,7 @@ const Layout = ({ children }) => {
   const loginPath = "/login";
   const registerPath = "/register";
   const fPswdConPath = "/forgot-password-confirmation";
+  const fPswdCon = "/forgot-password";
 
   return (
     <div className="">
@@ -22,6 +23,8 @@ const Layout = ({ children }) => {
         </span>
       ) : location.pathname === fPswdConPath ? (
         ""
+      ) : location.pathname === fPswdCon ? (
+        ""
       ) : (
         <Header />
       )}
@@ -29,7 +32,8 @@ const Layout = ({ children }) => {
       <div className="container flex overflow-y-hidden py-24">{children}</div>
       {location.pathname !== loginPath &&
         location.pathname !== registerPath &&
-        location.pathname !== fPswdConPath && <Footer />}
+        location.pathname !== fPswdConPath &&
+        location.pathname !== fPswdCon && <Footer />}
     </div>
   );
 };

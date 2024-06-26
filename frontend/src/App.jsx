@@ -10,6 +10,7 @@ import PP from "./pages/PP.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import ForgotPswdCon from "./pages/ForgotPswdCon.jsx";
+import ForgotPswd from "./pages/ForgotPswd.jsx";
 
 const App = () => {
   return (
@@ -23,7 +24,11 @@ const App = () => {
         <Route path="/privacy&policy" element={<PP />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/forgot-password-confirmation" element={<ForgotPswdCon />} />
+        <Route path="/forgot-password" element={<ForgotPswd />} />
+        <Route
+          path="/forgot-password-confirmation"
+          element={<ForgotPswdCon />}
+        />
       </Routes>
     </Layout>
   );

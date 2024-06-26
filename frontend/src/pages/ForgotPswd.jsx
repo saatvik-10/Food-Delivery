@@ -9,31 +9,24 @@ import { Label } from "../components/ui/label";
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 
-export default function ForgotPswdCon() {
+export default function ForgotPswd() {
   return (
     <Card className="mx-auto w-[100%] max-w-sm border-2 border-orange-600">
       <CardHeader className="space-y-3">
         <CardTitle className="text-center text-3xl font-bold">
-          Confirm Its You
+          Forgot Password
         </CardTitle>
-        <CardDescription className="text-center">Who is it ?</CardDescription>
+        <CardDescription className="text-center">Hello //name</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="space-y-5">
+        <div className="space-y-6">
           <div className="space-y-1">
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="me@example.com"
-              required
-            />
+            <Label htmlFor="newPassword">New Password</Label>
+            <Input id="password" type="password" required />
           </div>
           <div className="space-y-1">
-            <div className="font-medium">
-              <span>What is that one Date ?</span>
-            </div>
-            <Input id="ans" type="text" required />
+            <Label htmlFor="confirm-password">Confirm Password</Label>
+            <Input id="confirm-password" type="password" required />
           </div>
           <Button type="submit" className="w-full bg-gray-900">
             Confirm
