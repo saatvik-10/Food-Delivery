@@ -1,54 +1,196 @@
+import * as z from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../components/ui/form";
 import {
   Card,
+  CardContent,
+  CardDescription,
   CardHeader,
   CardTitle,
-  CardDescription,
-  CardContent,
 } from "../components/ui/card";
-import { Label } from "../components/ui/label";
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
+import { Link, useNavigate } from "react-router-dom";
+import { DatePicker } from "../components/DatePicker/DatePicker";
 
-export default function Register() {
+const formSchema = z.object({
+  name: z.string().min(1, {
+    message: "Name is required",
+  }),
+  email: z
+    .string()
+    .min(1, {
+      message: "Email is required",
+    })
+    .email({
+      message: "Please enter a valid email",
+    }),
+  password: z.string().min(1, {
+    message: "Password is required",
+  }),
+  confirmPassword: z.string().min(1, {
+    message: "Confirm Password is required",
+  }),
+  forgotPasswordDate: z.date({
+    message: "Date is required for Forgot Password.",
+  }),
+});
+
+const RegisterForm = () => {
+  const navigate = useNavigate();
+
+  const form = useForm({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      forgotPasswordDate: null,
+    },
+  });
+
+  const handleSubmit = (data) => {
+    console.log(data);
+    navigate("/login");
+  };
+
   return (
-    <Card className="mx-auto w-full max-w-sm border-2 border-orange-600">
-      <CardHeader>
-        <CardTitle className="text-center text-3xl">Register</CardTitle>
-        <CardDescription className="text-center">
-          Enter your information to create an account
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-1">
-        <div className="space-y-1">
-          <Label htmlFor="full-name">Full name</Label>
-          <Input id="full-name" placeholder="John Doe" required />
-        </div>
-        <div className="space-y-1">
-          <Label htmlFor="email">Email</Label>
-          <Input
-            id="email"
-            type="email"
-            placeholder="me@example.com"
-            required
-          />
-        </div>
-        <div className="space-y-1">
-          <Label htmlFor="password">Password</Label>
-          <Input id="password" type="password" required />
-        </div>
-        <div className="space-y-1">
-          <Label htmlFor="confirm-password">Confirm Password</Label>
-          <Input id="confirm-password" type="password" required />
-        </div>
-        <div className="space-y-1">
-          <div className="mt-2 flex flex-col space-y-1 font-medium">
-            <Label>What is that one Date ?</Label>
-            <span className="text-xs text-gray-500">(For Forgot Password)</span>
-          </div>
-          <Input id="ans" type="text" required />
-        </div>
-        <Button className="w-full bg-gray-900">Register</Button>
-      </CardContent>
-    </Card>
+    <div className="mx-auto md:w-1/3">
+      <Card className="border-2 border-red-600">
+        <CardHeader>
+          <CardTitle className="text-center">Register</CardTitle>
+          <CardDescription className="text-center">
+            Enter your information to create an account
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-2">
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(handleSubmit)}
+              className="space-y-2"
+            >
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-xs font-bold uppercase text-zinc-500 dark:text-white">
+                      Name
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        className="focus-visible: border-0 bg-slate-100 text-black ring-offset-0 focus-visible:ring-0 dark:bg-slate-500 dark:text-white"
+                        placeholder="Enter Name"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-xs font-bold uppercase text-zinc-500 dark:text-white">
+                      Email
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        className="focus-visible: border-0 bg-slate-100 text-black ring-offset-0 focus-visible:ring-0 dark:bg-slate-500 dark:text-white"
+                        placeholder="Enter Email"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-xs font-bold uppercase text-zinc-500 dark:text-white">
+                      Password
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        className="focus-visible: border-0 bg-slate-100 text-black ring-offset-0 focus-visible:ring-0 dark:bg-slate-500 dark:text-white"
+                        placeholder="Enter Password"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="confirmPassword"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-xs font-bold uppercase text-zinc-500 dark:text-white">
+                      Confirm Password
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        type="confirmPassword"
+                        className="focus-visible: border-0 bg-slate-100 text-black ring-offset-0 focus-visible:ring-0 dark:bg-slate-500 dark:text-white"
+                        placeholder="Enter Confirm Password"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="forgotPasswordDate"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-xs font-bold uppercase text-zinc-500 dark:text-white">
+                      What is that one Date ?
+                    </FormLabel>
+                    {/* <FormLabel className="text-xs font-bold uppercase text-zinc-500 dark:text-white">
+                      For Forgot Password
+                    </FormLabel> */}
+                    <FormControl>
+                      {/* <Input
+                        type="confirmPassword"
+                        className="focus-visible: border-0 bg-slate-100 text-black ring-offset-0 focus-visible:ring-0 dark:bg-slate-500 dark:text-white"
+                        placeholder="Enter Confirm Password"
+                        {...field}
+                      /> */}
+                      <DatePicker {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button className="w-full">Sign In</Button>
+            </form>
+          </Form>
+        </CardContent>
+      </Card>
+    </div>
   );
-}
+};
+
+export default RegisterForm;
