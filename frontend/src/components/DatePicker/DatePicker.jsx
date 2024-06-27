@@ -12,18 +12,14 @@ import { Calendar } from "../ui/calendar";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "../ui/form";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 
 const FormSchema = z.object({
-  // forgotPasswordDate: z.date({
-  //   error: "Date is required for Forgot Password.",
-  // }),
+  // later if required
 });
 
 export function DatePicker({ value, onChange }) {
@@ -43,7 +39,6 @@ export function DatePicker({ value, onChange }) {
           name="dob"
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              {/* <FormLabel>Date of birth</FormLabel> */}
               <Popover>
                 <PopoverTrigger asChild>
                   <FormControl>
@@ -71,9 +66,6 @@ export function DatePicker({ value, onChange }) {
                   />
                 </PopoverContent>
               </Popover>
-              {/* <FormDescription>
-                Your date of birth is used to calculate your age.
-              </FormDescription> */}
               <FormMessage />
             </FormItem>
           )}

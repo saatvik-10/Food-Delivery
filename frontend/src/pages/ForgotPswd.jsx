@@ -71,6 +71,7 @@ const ForgotPswd = () => {
                     <FormControl>
                       <Input
                         className="focus-visible: border-0 bg-slate-100 text-black ring-offset-0 focus-visible:ring-0 dark:bg-slate-500 dark:text-white"
+                        type="password"
                         placeholder="Enter New Password"
                         {...field}
                       />
@@ -91,6 +92,7 @@ const ForgotPswd = () => {
                     <FormControl>
                       <Input
                         className="focus-visible: border-0 bg-slate-100 text-black ring-offset-0 focus-visible:ring-0 dark:bg-slate-500 dark:text-white"
+                        type="password"
                         placeholder="Confirm New Password"
                         {...field}
                       />
