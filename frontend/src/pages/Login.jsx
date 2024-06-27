@@ -1,52 +1,131 @@
+import * as z from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../components/ui/form";
 import {
   Card,
+  CardContent,
+  CardDescription,
   CardHeader,
   CardTitle,
-  CardDescription,
-  CardContent,
 } from "../components/ui/card";
-import { Label } from "../components/ui/label";
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function Login() {
+const formSchema = z.object({
+  email: z
+    .string()
+    .min(1, {
+      message: "Email is required",
+    })
+    .email({
+      message: "Please enter a valid email",
+    }),
+  password: z.string().min(1, {
+    message: "Password is required",
+  }),
+});
+
+const LoginForm = () => {
+  const navigate = useNavigate();
+
+  const form = useForm({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const handleSubmit = (data) => {
+    navigate("/");
+    console.log(data);
+  };
+
   return (
-    <Card className="mx-auto w-[100%] max-w-sm border-2 border-orange-600">
-      <CardHeader className="space-y-1">
-        <CardTitle className="text-center text-2xl font-bold">Login</CardTitle>
-        <CardDescription className="text-center">
-          Enter your email and password to login
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="m@example.com"
-              required
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
-            <Input id="password" type="password" required />
-            <Link to="/forgot-password-confirmation" className="text-sm underline">
-              Forgot Password ?
-            </Link>
-          </div>
-          <div>
-            <Link to="/register" className="text-sm text-blue-700">
-              New Here ? Click here to Register
-            </Link>
-          </div>
-          <Button type="submit" className="w-full bg-gray-900">
-            Login
-          </Button>
-        </div>
-      </CardContent>
-    </Card>
+    <div className="mx-auto md:w-1/4">
+      <Card className="border-2 border-red-600">
+        <CardHeader>
+          <CardTitle className="text-center">Login</CardTitle>
+          <CardDescription className="text-center">
+            Enter your email and password to login{" "}
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-2">
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(handleSubmit)}
+              className="space-y-4"
+            >
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-xs font-bold uppercase text-zinc-500 dark:text-white">
+                      Email
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        className="focus-visible: border-0 bg-slate-100 text-black ring-offset-0 focus-visible:ring-0 dark:bg-slate-500 dark:text-white"
+                        placeholder="Enter Email"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-xs font-bold uppercase text-zinc-500 dark:text-white">
+                      Password
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        className="focus-visible: border-0 bg-slate-100 text-black ring-offset-0 focus-visible:ring-0 dark:bg-slate-500 dark:text-white"
+                        placeholder="Enter Password"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <div>
+                <Link
+                  to="/forgot-password-confirmation"
+                  className="text-sm underline"
+                >
+                  Forgot Password ?
+                </Link>
+              </div>
+              <div>
+                <Link to="/register" className="text-sm text-blue-700">
+                  New Here ? Click here to Register
+                </Link>
+              </div>
+
+              <Button className="w-full">Sign In</Button>
+            </form>
+          </Form>
+        </CardContent>
+      </Card>
+    </div>
   );
-}
+};
+
+export default LoginForm;
