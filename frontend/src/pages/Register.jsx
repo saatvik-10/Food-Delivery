@@ -61,6 +61,18 @@ const RegisterForm = () => {
   });
 
   const handleSubmit = async (data) => {
+    if (data.password !== data.confirmPassword) {
+      toast.error("Passwords do not match", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
     try {
       const response = await axios.post(
         "http://localhost:5000/api/users/register",
