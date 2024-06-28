@@ -203,6 +203,9 @@ const RegisterForm = () => {
                     <FormLabel className="text-xs font-bold uppercase text-zinc-500 dark:text-white">
                       What is that one Date ?
                     </FormLabel>
+                    <div className="text-xs text-zinc-500 dark:text-white">
+                      (For Forgot Password)
+                    </div>
                     <DatePicker {...field} />
                     <FormMessage />
                   </FormItem>
