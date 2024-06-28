@@ -3,6 +3,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import "../index.css";
 import { useLocation } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -28,7 +29,7 @@ const Layout = ({ children }) => {
       ) : (
         <Header />
       )}
-
+        <ToastContainer />
       <div className="container flex overflow-y-hidden py-24">{children}</div>
       {location.pathname !== loginPath &&
         location.pathname !== registerPath &&

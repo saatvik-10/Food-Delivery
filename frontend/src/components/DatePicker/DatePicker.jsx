@@ -19,7 +19,7 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 
 const FormSchema = z.object({
-  // later if required
+  fPswdDate: z.date(),
 });
 
 export function DatePicker({ value, onChange }) {
@@ -28,7 +28,8 @@ export function DatePicker({ value, onChange }) {
   });
 
   function onSubmit(data) {
-    console.log(data);
+    const formattedDate = format(data.fPswdDate, "dd/MM/yyyy");
+    console.log({ ...data, fPswdDate: formattedDate });
   }
 
   return (
@@ -58,7 +59,10 @@ export function DatePicker({ value, onChange }) {
                   <Calendar
                     mode="single"
                     selected={value}
-                    onSelect={onChange}
+                    onSelect={(date) => {
+                      field.onChange(date);
+                      onChange(date);
+                    }}
                     disabled={(date) =>
                       date > new Date() || date < new Date("1900-01-01")
                     }

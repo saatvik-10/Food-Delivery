@@ -19,6 +19,17 @@ import {
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+// import { toast } from "react-toastify";
+// import { format } from "date-fns";
+// import { CalendarIcon } from "lucide-react";
+// import { cn } from "../lib/utils";
+// import { Calendar } from "../components/ui/calendar";
+// import {
+//   Popover,
+//   PopoverContent,
+//   PopoverTrigger,
+// } from "../components/ui/popover";
 import { DatePicker } from "../components/DatePicker/DatePicker";
 
 const formSchema = z.object({
@@ -58,9 +69,22 @@ const RegisterForm = () => {
     },
   });
 
-  const handleSubmit = (data) => {
-    console.log(data);
-    navigate("/login");
+  const handleSubmit = async (data) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/users/register",
+        {
+          name: data.name,
+          email: data.email,
+          password: data.password,
+          date: data.forgotPasswordDate,
+        },
+      );
+      console.log(response.data);
+      navigate("/login");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -164,26 +188,16 @@ const RegisterForm = () => {
                 control={form.control}
                 name="forgotPasswordDate"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="flex flex-col">
                     <FormLabel className="text-xs font-bold uppercase text-zinc-500 dark:text-white">
                       What is that one Date ?
                     </FormLabel>
-                    {/* <FormLabel className="text-xs font-bold uppercase text-zinc-500 dark:text-white">
-                      For Forgot Password
-                    </FormLabel> */}
-                    <FormControl>
-                      {/* <Input
-                        type="confirmPassword"
-                        className="focus-visible: border-0 bg-slate-100 text-black ring-offset-0 focus-visible:ring-0 dark:bg-slate-500 dark:text-white"
-                        placeholder="Enter Confirm Password"
-                        {...field}
-                      /> */}
-                      <DatePicker {...field} />
-                    </FormControl>
+                    <DatePicker {...field} />
                     <FormMessage />
                   </FormItem>
                 )}
               />
+
               <Button className="w-full">Sign In</Button>
             </form>
           </Form>
