@@ -20,17 +20,8 @@ import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-// import { toast } from "react-toastify";
-// import { format } from "date-fns";
-// import { CalendarIcon } from "lucide-react";
-// import { cn } from "../lib/utils";
-// import { Calendar } from "../components/ui/calendar";
-// import {
-//   Popover,
-//   PopoverContent,
-//   PopoverTrigger,
-// } from "../components/ui/popover";
 import { DatePicker } from "../components/DatePicker/DatePicker";
+import { toast } from "react-toastify";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -82,8 +73,28 @@ const RegisterForm = () => {
       );
       console.log(response.data);
       navigate("/login");
+      toast.success("User registered successfully!", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     } catch (error) {
       console.log(error);
+      toast.error("Something went wrong", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     }
   };
 
@@ -173,7 +184,7 @@ const RegisterForm = () => {
                     </FormLabel>
                     <FormControl>
                       <Input
-                        type="confirmPassword"
+                        type="password"
                         className="focus-visible: border-0 bg-slate-100 text-black ring-offset-0 focus-visible:ring-0 dark:bg-slate-500 dark:text-white"
                         placeholder="Enter Confirm Password"
                         {...field}
