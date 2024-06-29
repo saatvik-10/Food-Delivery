@@ -19,6 +19,8 @@ import {
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const formSchema = z.object({
   email: z
@@ -45,9 +47,39 @@ const LoginForm = () => {
     },
   });
 
-  const handleSubmit = (data) => {
-    navigate("/");
-    console.log(data);
+  const handleSubmit = async (data) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/users/login",
+        {
+          ...data,
+        },
+      );
+      console.log(response.data);
+      navigate("/");
+      toast.success("Login Successfull", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error("Invalid email or password", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
   };
 
   return (

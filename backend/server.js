@@ -6,7 +6,7 @@ import colors from 'colors';
 import userRoutes from './routes/userRoutes.js';
 import { errHandler, notFound } from './middlewares/errMiddleware.js';
 import cookieParser from 'cookie-parser';
-import cors from 'cors'
+import cors from 'cors';
 
 dotenv.config();
 
@@ -14,7 +14,12 @@ dbConnect();
 
 const app = express();
 
-app.use(cors())
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
