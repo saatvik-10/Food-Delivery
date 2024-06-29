@@ -3,8 +3,19 @@ import { Button } from "./ui/button";
 import { SheetTrigger, SheetContent, Sheet } from "./ui/sheet";
 import logo from "./images/cook.png";
 import { LogIn, ShoppingBag } from "lucide-react";
+import { useEffect, useState } from "react";
+import Profile from "./Avatar/page";
 
 export default function Component() {
+  const [loginUser, setloginUser] = useState("");
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      setloginUser(user);
+    }
+  }, []);
+
   return (
     <div className="fixed top-0 z-50 flex w-full items-center justify-between bg-gray-900 px-4 py-2">
       <Link className="flex items-center gap-1" to="/">
@@ -33,10 +44,14 @@ export default function Component() {
         </Link>
       </div>
       <div className="mr-5 hidden gap-4 text-white md:flex">
-        <Link to="/login" className="flex gap-2 text-lg font-medium">
-          <LogIn />
-          Login
-        </Link>
+        {loginUser ? (
+          <Profile />
+        ) : (
+          <Link to="/login" className="flex gap-2 text-lg font-medium">
+            <LogIn />
+            Login
+          </Link>
+        )}
       </div>
       <Sheet>
         <SheetTrigger asChild>

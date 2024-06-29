@@ -22,6 +22,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { DatePicker } from "../components/DatePicker/DatePicker";
 import { toast } from "react-toastify";
+import { useEffect } from "react";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -109,6 +110,12 @@ const RegisterForm = () => {
       });
     }
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      navigate("/login");
+    }
+  }, [navigate]);
 
   return (
     <div className="mx-auto md:w-1/3">

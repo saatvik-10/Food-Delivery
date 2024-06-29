@@ -21,6 +21,7 @@ import { Button } from "../components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useEffect } from "react";
 
 const formSchema = z.object({
   email: z
@@ -57,6 +58,10 @@ const LoginForm = () => {
       );
       console.log(response.data);
       navigate("/");
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ ...data.user, password: "" }),
+      );
       toast.success("Login Successfull", {
         position: "bottom-right",
         autoClose: 5000,
@@ -81,6 +86,12 @@ const LoginForm = () => {
       });
     }
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      navigate("/");
+    }
+  }, [navigate]);
 
   return (
     <div className="mx-auto md:w-1/4">
