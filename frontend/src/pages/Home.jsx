@@ -27,7 +27,7 @@ export default function Home() {
         </div>
       </div>
       <div className="">
-        <span className="mb-14 mt-5 flex items-center justify-center text-center text-2xl font-semibold text-red-600 md:text-6xl">
+        <span className="mb-14 flex items-center justify-center text-center text-2xl font-semibold text-red-600 md:text-6xl">
           From Our Regulars
         </span>
         <Reviews />
