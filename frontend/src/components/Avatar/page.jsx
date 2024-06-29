@@ -1,3 +1,4 @@
+import React from "react";
 import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar";
 import {
   DropdownMenu,
@@ -7,11 +8,22 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-
-import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function Profile() {
+  const navigate = useNavigate();
+
+  const logoutHandler = () => {
+    localStorage.removeItem("user");
+    toast.success("User Logged Out Successfully");
+    navigate("/");
+    // window.location.reload();
+    setTimeout(() => {
+      window.location.reload();
+    }, 1500);
+  };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="focus:outline-none">
@@ -27,7 +39,9 @@ export default function Profile() {
           <Link to="/profile">Profile</Link>
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <Link to="/logout">Logout</Link>
+          <Link to="/" onClick={logoutHandler}>
+            Logout
+          </Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
