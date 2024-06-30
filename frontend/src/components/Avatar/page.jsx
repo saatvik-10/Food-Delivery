@@ -18,10 +18,9 @@ export default function Profile() {
     localStorage.removeItem("user");
     toast.success("User Logged Out Successfully");
     navigate("/");
-    // window.location.reload();
     setTimeout(() => {
       window.location.reload();
-    }, 1500);
+    }, 500);
   };
 
   return (
