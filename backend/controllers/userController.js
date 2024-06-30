@@ -3,7 +3,7 @@ import asyncHandler from 'express-async-handler';
 import generateToken from '../utils/generateToken.js';
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password, date } = req.body;
+  const { name, email, password, date, address } = req.body;
 
   const userExists = await User.findOne({ email });
 
@@ -17,6 +17,7 @@ const registerUser = asyncHandler(async (req, res) => {
     email,
     password,
     date,
+    address,
   });
 
   if (user) {
@@ -25,8 +26,8 @@ const registerUser = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
-      
       date: user.date,
+      address: user.address,
     });
   } else {
     res.status(400);
