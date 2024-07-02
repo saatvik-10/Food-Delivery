@@ -45,7 +45,7 @@ export default function Component() {
       </div>
       <div className="mr-5 hidden gap-4 text-white md:flex">
         {loginUser ? (
-          <Profile />
+          <Profile loginUser={loginUser} />
         ) : (
           <Link to="/login" className="flex gap-2 text-lg font-medium">
             <LogIn />
@@ -61,6 +61,16 @@ export default function Component() {
           </Button>
         </SheetTrigger>
         <SheetContent side="right">
+          <Button className="gap-2 bg-white text-lg font-medium hover:bg-white">
+            {loginUser ? (
+              <Profile loginUser={loginUser} />
+            ) : (
+              <Link to="/login" className="flex gap-2 text-lg font-medium">
+                <LogIn />
+                Login
+              </Link>
+            )}
+          </Button>
           <div className="grid w-[200px] gap-y-3 p-3">
             <Link
               className="text-lg font-medium underline-offset-4 hover:underline"
@@ -81,10 +91,6 @@ export default function Component() {
               Cart
             </Link>
           </div>
-          <Button className="gap-2 bg-none text-lg font-medium">
-            <LogIn />
-            Login
-          </Button>
         </SheetContent>
       </Sheet>
     </div>

@@ -1,5 +1,4 @@
-import React from "react";
-import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar";
+import { Avatar } from "../ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,7 +10,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-export default function Profile() {
+export default function Profile({ loginUser }) {
   const navigate = useNavigate();
 
   const logoutHandler = () => {
@@ -20,25 +19,26 @@ export default function Profile() {
     navigate("/");
     setTimeout(() => {
       window.location.reload();
-    }, 500);
+    }, 1);
   };
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="focus:outline-none">
-        <Avatar>
-          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-          <AvatarFallback className="text-black">PP</AvatarFallback>
+        <Avatar className="hover:pointer flex items-center justify-center bg-black text-lg font-bold text-white md:bg-white md:text-gray-900">
+          {loginUser.name?.slice(0, 1).toUpperCase()}
         </Avatar>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+      <DropdownMenuContent className='-translate-x-2'>
+        <DropdownMenuLabel className='text-lg'>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <Link to="/profile">Profile</Link>
+          <Link className="w-full text-base" to={"/profile"}>
+            Profile
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <Link to="/" onClick={logoutHandler}>
+          <Link className="w-full text-base" to="/" onClick={logoutHandler}>
             Logout
           </Link>
         </DropdownMenuItem>

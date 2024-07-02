@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Layout from "./components/Layout.jsx";
 import Menu from "./pages/Menu.jsx";
@@ -11,6 +11,7 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import ForgotPswdCon from "./pages/ForgotPswdCon.jsx";
 import ForgotPswd from "./pages/ForgotPswd.jsx";
+import UserProfile from "./pages/Profile.jsx";
 
 const App = () => {
   return (
@@ -29,9 +30,25 @@ const App = () => {
           path="/forgot-password-confirmation"
           element={<ForgotPswdCon />}
         />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <UserProfile />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Layout>
   );
 };
+
+export function ProtectedRoute(props) {
+  if (localStorage.getItem("user")) {
+    return props.children;
+  } else {
+    return <Navigate to="/login" />;
+  }
+}
 
 export default App;

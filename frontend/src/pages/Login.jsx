@@ -58,10 +58,9 @@ const LoginForm = () => {
       );
       console.log(response.data);
       navigate("/");
-      localStorage.setItem(
-        "user",
-        JSON.stringify({ ...data.user, password: "" }),
-      );
+
+      localStorage.setItem("user", JSON.stringify(response.data));
+
       toast.success("Login Successfull", {
         position: "bottom-right",
         autoClose: 5000,
