@@ -48,7 +48,11 @@ const formSchema = z.object({
 });
 
 const UserProfile = () => {
-  const [authUser, setAuthUser] = useState("");
+  const [authUser, setAuthUser] = useState({
+    name: "",
+    email: "",
+    address: "",
+  });
 
   const navigate = useNavigate();
 
@@ -62,13 +66,17 @@ const UserProfile = () => {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: authUser.name,
-      email: authUser.email,
+      name: "",
+      email: "",
       password: "",
       confirmPassword: "",
-      address: authUser.address,
+      address: "",
     },
   });
+
+  useEffect(() => {
+    form.reset(authUser);
+  }, [authUser, form]);
 
   const handleSubmit = async (data) => {
     if (data.password !== data.confirmPassword) {
@@ -142,7 +150,7 @@ const UserProfile = () => {
                 <FormField
                   control={form.control}
                   name="name"
-                  render={() => (
+                  render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-xs font-bold uppercase text-zinc-500 dark:text-white">
                         Name
@@ -151,7 +159,7 @@ const UserProfile = () => {
                         <Input
                           className="focus-visible: border-0 bg-slate-100 text-black ring-offset-0 focus-visible:ring-0 dark:bg-slate-500 dark:text-white"
                           placeholder="Enter Name"
-                          value={authUser.name}
+                          {...field}
                         />
                       </FormControl>
                       <FormMessage />
@@ -162,7 +170,7 @@ const UserProfile = () => {
                 <FormField
                   control={form.control}
                   name="email"
-                  render={() => (
+                  render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-xs font-bold uppercase text-zinc-500 dark:text-white">
                         Email
@@ -171,7 +179,7 @@ const UserProfile = () => {
                         <Input
                           className="focus-visible: border-0 bg-slate-100 text-black ring-offset-0 focus-visible:ring-0 dark:bg-slate-500 dark:text-white"
                           placeholder="Enter Email"
-                          value={authUser.email}
+                          {...field}
                         />
                       </FormControl>
                       <FormMessage />
@@ -224,22 +232,26 @@ const UserProfile = () => {
                 <FormField
                   control={form.control}
                   name="address"
-                  render={() => (
-                    <FormItem className="flex flex-col">
+                  render={({ field }) => (
+                    <FormItem>
                       <FormLabel className="mt-3 text-xs font-bold uppercase text-zinc-500 dark:text-white">
                         Address
                       </FormLabel>
-                      <Textarea
-                        className="focus-visible: h-20 border-0 bg-slate-100 text-black ring-offset-0 focus-visible:ring-0 dark:bg-slate-500 dark:text-white"
-                        placeholder="Enter Address"
-                        value={authUser.address}
-                      />
+                      <FormControl>
+                        <Textarea
+                          className="focus-visible: h-20 border-0 bg-slate-100 text-black ring-offset-0 focus-visible:ring-0 dark:bg-slate-500 dark:text-white"
+                          placeholder="Enter Address"
+                          {...field}
+                        />
+                      </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
 
-                <Button className="mt-3 w-full">Save</Button>
+                <Button className="mt-3 w-full" type="submit">
+                  Save
+                </Button>
               </div>
             </form>
           </Form>
