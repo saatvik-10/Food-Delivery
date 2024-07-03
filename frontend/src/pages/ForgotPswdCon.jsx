@@ -22,15 +22,16 @@ import { useNavigate } from "react-router-dom";
 import { DatePicker } from "../components/DatePicker/DatePicker";
 
 const formSchema = z.object({
-  email: z
-    .string()
-    .min(1, {
-      message: "Email is required",
-    })
-    .email({
-      message: "Please enter a valid email",
-    }),
-  forgotPasswordDate: z.date({
+  phone: z
+  .string()
+  .trim()
+  .regex(/^(\d[\s-]?){10}$/, {
+    message: "Contact must be of 10 digits",
+  })
+  .transform((val) => val.replace(/\D/g, ""))
+  .refine((val) => val.length === 10, {
+    message: "Contact of 10 digits is required",
+  }),  forgotPasswordDate: z.date({
     message: "Date is required for Forgot Password.",
   }),
 });
@@ -41,7 +42,7 @@ const ForgotPswdCon = () => {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
+      phone: "",
       forgotPasswordDate: null,
     },
   });
@@ -70,12 +71,13 @@ const ForgotPswdCon = () => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-xs font-bold uppercase text-zinc-500 dark:text-white">
-                      Email
+                      Contact
                     </FormLabel>
                     <FormControl>
                       <Input
                         className="focus-visible: border-0 bg-slate-100 text-black ring-offset-0 focus-visible:ring-0 dark:bg-slate-500 dark:text-white"
-                        placeholder="Enter Email"
+                        placeholder="Enter Contact Number"
+                        type='number'
                         {...field}
                       />
                     </FormControl>

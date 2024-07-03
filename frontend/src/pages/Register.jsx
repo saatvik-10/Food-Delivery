@@ -29,13 +29,15 @@ const formSchema = z.object({
   name: z.string().min(1, {
     message: "Name is required",
   }),
-  email: z
+  phone: z
     .string()
-    .min(1, {
-      message: "Email is required",
+    .trim()
+    .regex(/^(\d[\s-]?){10}$/, {
+      message: "Contact must be of 10 digits",
     })
-    .email({
-      message: "Please enter a valid email",
+    .transform((val) => val.replace(/\D/g, ""))
+    .refine((val) => val.length === 10, {
+      message: "Contact of 10 digits is required",
     }),
   password: z.string().min(1, {
     message: "Password is required",
@@ -58,7 +60,7 @@ const RegisterForm = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      email: "",
+      phone: "",
       password: "",
       confirmPassword: "",
       forgotPasswordDate: null,
@@ -84,7 +86,7 @@ const RegisterForm = () => {
         "http://localhost:5000/api/users/register",
         {
           name: data.name,
-          email: data.email,
+          phone: data.phone,
           password: data.password,
           date: data.forgotPasswordDate,
           address: data.address,
@@ -161,16 +163,18 @@ const RegisterForm = () => {
 
                 <FormField
                   control={form.control}
-                  name="email"
+                  name="phone"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-xs font-bold uppercase text-zinc-500 dark:text-white">
-                        Email
+                        Contact
                       </FormLabel>
                       <FormControl>
                         <Input
                           className="focus-visible: border-0 bg-slate-100 text-black ring-offset-0 focus-visible:ring-0 dark:bg-slate-500 dark:text-white"
-                          placeholder="Enter Email"
+                          placeholder="Enter Contact Number"
+                          type="number"
+                          Email
                           {...field}
                         />
                       </FormControl>

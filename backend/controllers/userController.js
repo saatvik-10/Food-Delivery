@@ -3,9 +3,9 @@ import asyncHandler from 'express-async-handler';
 import generateToken from '../utils/generateToken.js';
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password, date, address } = req.body;
+  const { name, phone, password, date, address } = req.body;
 
-  const userExists = await User.findOne({ email });
+  const userExists = await User.findOne({ phone });
 
   if (userExists) {
     res.status(400);
@@ -14,7 +14,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   const user = await User.create({
     name,
-    email,
+    phone,
     password,
     date,
     address,
@@ -25,7 +25,7 @@ const registerUser = asyncHandler(async (req, res) => {
     res.status(201).json({
       _id: user._id,
       name: user.name,
-      email: user.email,
+      phone: user.phone,
       date: user.date,
       address: user.address,
     });
@@ -38,20 +38,20 @@ const registerUser = asyncHandler(async (req, res) => {
 });
 
 const loginUser = asyncHandler(async (req, res) => {
-  const { email, password } = req.body;
+  const { phone, password } = req.body;
 
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ phone });
 
   if (user && (await user.matchPassword(password))) {
     generateToken(res, user._id);
     res.status(201).json({
       id: user._id,
       name: user.name,
-      email: user.email,
+      phone: user.phone,
     });
   } else {
     res.status(400);
-    throw new Error('Invalid email or password');
+    throw new Error('Invalid contact or password');
   }
 });
 
@@ -59,7 +59,7 @@ const getUser = asyncHandler(async (req, res) => {
   const user = {
     _id: req.user._id,
     name: req.user.name,
-    email: req.user.email,
+    phone: req.user.phone,
     address: req.user.address,
   };
 
@@ -71,7 +71,7 @@ const updateUser = asyncHandler(async (req, res) => {
 
   if (user) {
     user.name = req.body.name || user.name;
-    user.email = req.body.email || user.email;
+    user.phone = req.body.phone || user.phone;
 
     if (req.body.password) {
       user.password = req.body.password;
@@ -84,7 +84,7 @@ const updateUser = asyncHandler(async (req, res) => {
     res.status(200).json({
       _id: updatedUser._id,
       name: updatedUser.name,
-      email: updateUser.email,
+      phone: updateUser.phone,
       address: updatedUser.address,
     });
   } else {

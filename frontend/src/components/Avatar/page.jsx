@@ -15,11 +15,11 @@ export default function Profile({ loginUser }) {
 
   const logoutHandler = () => {
     localStorage.removeItem("user");
-    toast.success("User Logged Out Successfully");
+    toast.success("Logout successful, PLease Wait...");
     navigate("/");
     setTimeout(() => {
       window.location.reload();
-    }, 1);
+    }, 500);
   };
 
   return (
@@ -29,8 +29,8 @@ export default function Profile({ loginUser }) {
           {loginUser.name?.slice(0, 1).toUpperCase()}
         </Avatar>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className='-translate-x-2'>
-        <DropdownMenuLabel className='text-lg'>My Account</DropdownMenuLabel>
+      <DropdownMenuContent className="-translate-x-2">
+        <DropdownMenuLabel className="text-lg">My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           <Link className="w-full text-base" to={"/profile"}>

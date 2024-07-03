@@ -24,13 +24,15 @@ import { toast } from "react-toastify";
 import { useEffect } from "react";
 
 const formSchema = z.object({
-  email: z
+  phone: z
     .string()
-    .min(1, {
-      message: "Email is required",
+    .trim()
+    .regex(/^(\d[\s-]?){10}$/, {
+      message: "Contact must be of 10 digits",
     })
-    .email({
-      message: "Please enter a valid email",
+    .transform((val) => val.replace(/\D/g, ""))
+    .refine((val) => val.length === 10, {
+      message: "Contact of 10 digits is required",
     }),
   password: z.string().min(1, {
     message: "Password is required",
@@ -43,7 +45,7 @@ const LoginForm = () => {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
+      phone: "",
       password: "",
     },
   });
@@ -73,7 +75,7 @@ const LoginForm = () => {
       });
     } catch (error) {
       console.log(error);
-      toast.error("Invalid email or password", {
+      toast.error("Invalid contact or password", {
         position: "bottom-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -109,16 +111,17 @@ const LoginForm = () => {
             >
               <FormField
                 control={form.control}
-                name="email"
+                name="phone"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-xs font-bold uppercase text-zinc-500 dark:text-white">
-                      Email
+                      Contact
                     </FormLabel>
                     <FormControl>
                       <Input
                         className="focus-visible: border-0 bg-slate-100 text-black ring-offset-0 focus-visible:ring-0 dark:bg-slate-500 dark:text-white"
-                        placeholder="Enter Email"
+                        placeholder="Enter Contact Number"
+                        type="number"
                         {...field}
                       />
                     </FormControl>
