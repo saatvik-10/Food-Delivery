@@ -38,9 +38,7 @@ const formSchema = z.object({
     .refine((val) => val.length === 10, {
       message: "Contact of 10 digits is required",
     }),
-  address: z.string().min(1, {
-    message: "Address is required",
-  }),
+  address: z.string().optional().or(z.literal("")),
 });
 
 const UserProfile = () => {
@@ -53,10 +51,49 @@ const UserProfile = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-      setAuthUser(user);
-    }
+    const fetchUserProfile = async () => {
+      try {
+        const token = JSON.parse(localStorage.getItem("jwt"));
+        const response = await axios.get(
+          "http://localhost:5000/api/users/profile",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            withCredentials: true,
+          },
+        );
+
+        setAuthUser(response.data);
+      } catch (error) {
+        console.error("Error fetching user profile", error);
+        if (error.response && error.response.status === 404) {
+          toast.error("User not found", {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+        } else {
+          toast.error("Something went wrong", {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+        }
+      }
+    };
+
+    fetchUserProfile();
   }, []);
 
   const form = useForm({
@@ -73,26 +110,22 @@ const UserProfile = () => {
   }, [authUser, form]);
 
   const handleSubmit = async (data) => {
-    if (data.password !== data.confirmPassword) {
-      toast.error("Passwords do not match", {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
-    }
     try {
+      const token = JSON.parse(localStorage.getItem("jwt"));
       const response = await axios.put(
         "http://localhost:5000/api/users/profile",
-        data,
+        { ...data },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true,
+        },
       );
+
       console.log(response.data);
-      navigate("/");
-      localStorage.setItem("user", JSON.stringify(data));
+      localStorage.setItem("user", JSON.stringify({ ...response.data }));
+
       toast.success("User Info updated successfully", {
         position: "bottom-right",
         autoClose: 5000,
@@ -103,7 +136,8 @@ const UserProfile = () => {
         progress: undefined,
         theme: "dark",
       });
-      return data;
+
+      navigate("/");
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong", {
@@ -118,12 +152,6 @@ const UserProfile = () => {
       });
     }
   };
-
-  useEffect(() => {
-    if (localStorage.getItem("user")) {
-      navigate("/profile");
-    }
-  }, [navigate]);
 
   return (
     <div className="mx-auto w-full md:w-1/3">
@@ -172,8 +200,7 @@ const UserProfile = () => {
                       <FormControl>
                         <Input
                           className="focus-visible: border-0 bg-slate-100 text-black ring-offset-0 focus-visible:ring-0 dark:bg-slate-500 dark:text-white"
-                          placeholder="Enter Contac Number"
-                          type="number"
+                          placeholder="Enter Contact Number"
                           {...field}
                         />
                       </FormControl>

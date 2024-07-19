@@ -54,16 +54,15 @@ const LoginForm = () => {
     try {
       const response = await axios.post(
         "http://localhost:5000/api/users/login",
-        {
-          ...data,
-        },
+        { ...data },
+        { withCredentials: true },
       );
+
       console.log(response.data);
-      navigate("/");
 
       localStorage.setItem("user", JSON.stringify(response.data));
 
-      toast.success("Login Successfull", {
+      toast.success("Login Successful", {
         position: "bottom-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -73,6 +72,8 @@ const LoginForm = () => {
         progress: undefined,
         theme: "dark",
       });
+
+      navigate("/");
     } catch (error) {
       console.log(error);
       toast.error("Invalid contact or password", {
@@ -121,7 +122,6 @@ const LoginForm = () => {
                       <Input
                         className="focus-visible: border-0 bg-slate-100 text-black ring-offset-0 focus-visible:ring-0 dark:bg-slate-500 dark:text-white"
                         placeholder="Enter Contact Number"
-                        type="number"
                         {...field}
                       />
                     </FormControl>

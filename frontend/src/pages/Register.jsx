@@ -174,7 +174,6 @@ const RegisterForm = () => {
                           className="focus-visible: border-0 bg-slate-100 text-black ring-offset-0 focus-visible:ring-0 dark:bg-slate-500 dark:text-white"
                           placeholder="Enter Contact Number"
                           type="number"
-                          Email
                           {...field}
                         />
                       </FormControl>
