@@ -38,7 +38,9 @@ const formSchema = z.object({
     .refine((val) => val.length === 10, {
       message: "Contact of 10 digits is required",
     }),
-  address: z.string().optional().or(z.literal("")),
+  address: z.string().min(1, {
+    message: "Address is required",
+  }),
 });
 
 const UserProfile = () => {
