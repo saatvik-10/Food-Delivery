@@ -3,8 +3,8 @@ import { Card } from "../../components/ui/card";
 
 const reviews = [
   {
-    name: "Anandita Babar",
-    date: "Feb 9, 2024",
+    name: "Rishabh Kothari",
+    date: "Sep 17, 2024",
     review:
       "As a customer, I had an amazing experience on this website. The user-friendly interface made it easy to explore the delicious food options, and the detailed descriptions helped me choose the perfect dishes. The checkout process was smooth, and my order arrived promptly, with every item tasting fresh and flavorful. Overall, I'm very impressed with the quality of both the website and the food, and I'll definitely be returning for more.",
   },

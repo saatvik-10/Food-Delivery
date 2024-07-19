@@ -85,11 +85,7 @@ const RegisterForm = () => {
       const response = await axios.post(
         "http://localhost:5000/api/users/register",
         {
-          name: data.name,
-          phone: data.phone,
-          password: data.password,
-          date: data.forgotPasswordDate,
-          address: data.address,
+          ...data,
         },
       );
       console.log(response.data);
@@ -173,7 +169,6 @@ const RegisterForm = () => {
                         <Input
                           className="focus-visible: border-0 bg-slate-100 text-black ring-offset-0 focus-visible:ring-0 dark:bg-slate-500 dark:text-white"
                           placeholder="Enter Contact Number"
-                          type="number"
                           {...field}
                         />
                       </FormControl>
