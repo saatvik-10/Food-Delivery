@@ -6,7 +6,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "../../../src/components/ui/carousel";
-import { Button } from "../ui/button";
+import { Price } from "./Modal/Price";
 
 export default function MenuCards({ carouselItems, title }) {
   return (
@@ -33,9 +33,13 @@ export default function MenuCards({ carouselItems, title }) {
                       {items.description}
                     </p>
                     <div className="flex justify-end">
-                      <Button className="w-max rounded-md bg-gray-900 text-center">
-                        Add to Cart
-                      </Button>
+                      {/* <Button className="w-max rounded-md bg-gray-900 text-center"> */}
+                      <Price
+                        subTitle={items.subTitle}
+                        price1={items.price1}
+                        price2={items.price2}
+                      />
+                      {/* </Button> */}
                     </div>
                   </CardContent>
                 </Card>

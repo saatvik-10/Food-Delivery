@@ -85,7 +85,11 @@ const RegisterForm = () => {
       const response = await axios.post(
         "http://localhost:5000/api/users/register",
         {
-          ...data,
+          name: data.name,
+          phone: data.phone,
+          password: data.password,
+          date: data.forgotPasswordDate,
+          address: data.address,
         },
       );
       console.log(response.data);
