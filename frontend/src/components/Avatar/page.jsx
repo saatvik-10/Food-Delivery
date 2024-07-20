@@ -15,7 +15,7 @@ export default function Profile({ loginUser }) {
 
   const logoutHandler = () => {
     localStorage.removeItem("user");
-    toast.success("Logout successful, PLease Wait...");
+    toast.success("Logout successful, Please Wait...");
     navigate("/");
     setTimeout(() => {
       window.location.reload();

@@ -1,6 +1,6 @@
-import User from '../models/userModel.js';
-import asyncHandler from 'express-async-handler';
-import generateToken from '../utils/generateToken.js';
+import User from "../models/userModel.js";
+import asyncHandler from "express-async-handler";
+import generateToken from "../utils/generateToken.js";
 
 const registerUser = asyncHandler(async (req, res) => {
   const { name, phone, password, date, address } = req.body;
@@ -9,7 +9,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (userExists) {
     res.status(400);
-    throw new Error('User already Exists');
+    throw new Error("User already Exists");
   }
 
   const user = await User.create({
@@ -31,10 +31,10 @@ const registerUser = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(400);
-    throw new Error('Invalid user data ');
+    throw new Error("Invalid user data ");
   }
 
-  res.status(200).json({ message: 'User Registered Successfully' });
+  res.status(200).json({ message: "User Registered Successfully" });
 });
 
 const loginUser = asyncHandler(async (req, res) => {
@@ -51,7 +51,7 @@ const loginUser = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(400);
-    throw new Error('Invalid contact or password');
+    throw new Error("Invalid contact or password");
   }
 });
 
@@ -89,7 +89,7 @@ const updateUser = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(400);
-    throw new Error('User not found');
+    throw new Error("User not found");
   }
 });
 
