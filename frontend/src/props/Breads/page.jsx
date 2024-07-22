@@ -10,18 +10,24 @@ const carouselItems = [
     subTitle: "Butter Naan",
     description:
       "Soft and fluffy Indian flatbread brushed with melted butter, often baked in a tandoor, resulting in a slightly crisp and golden exterior.",
+    price1: "1 Piece | Rs.35",
+    price2: "2 Piece | Rs.50",
   },
   {
     image: GBNaan,
     subTitle: "Garlic Naan",
     description:
       " A flavorful variation of naan infused with minced garlic and herbs, baked until golden and typically served with a variety of Indian curries.",
+    price1: "1 Piece | Rs.45",
+    price2: "2 Piece | Rs.70",
   },
   {
     image: Rumali,
     subTitle: "Rumali",
     description:
       "A thin and soft flatbread known for its handkerchief-like texture, usually cooked on an inverted wok, and commonly paired with rich and spicy dishes.",
+    price1: "1 Piece | Rs.30",
+    price2: "2 Piece | Rs.45",
   },
 ];
 

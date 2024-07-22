@@ -10,18 +10,24 @@ const carouselItems = [
     subTitle: "Plain Rice",
     description:
       "Simple and fluffy steamed white rice, serving as a versatile and neutral base for various Indian curries and dishes.",
+    price1: "Half | Rs.40",
+    price2: "Full | Rs.70",
   },
   {
     image: JRice,
     subTitle: "Jeera Rice",
     description:
       " Fragrant basmati rice sautéed with cumin seeds (jeera) and lightly seasoned, adding a subtle nutty flavor and aroma.",
+    price1: "Half | Rs.50",
+    price2: "Full | Rs.90",
   },
   {
     image: CBiryani,
     subTitle: "Chicken Biyani",
     description:
       " A fragrant and flavorful rice dish where marinated chicken is layered with spiced basmati rice, cooked together with aromatic herbs and saffron.",
+    price1: "Half | Rs.100",
+    price2: "Full | Rs.180",
   },
 ];
 
