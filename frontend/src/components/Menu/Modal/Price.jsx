@@ -18,7 +18,7 @@ export function Price({ subTitle, price1, price2 }) {
           Add to Cart
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[375px]">
         <DialogHeader>
           <DialogTitle>{subTitle}</DialogTitle>
           <DialogDescription>Customise as per your taste</DialogDescription>
