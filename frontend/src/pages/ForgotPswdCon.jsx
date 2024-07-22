@@ -20,19 +20,22 @@ import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { DatePicker } from "../components/DatePicker/DatePicker";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const formSchema = z.object({
   phone: z
-  .string()
-  .trim()
-  .regex(/^(\d[\s-]?){10}$/, {
-    message: "Contact must be of 10 digits",
-  })
-  .transform((val) => val.replace(/\D/g, ""))
-  .refine((val) => val.length === 10, {
-    message: "Contact of 10 digits is required",
-  }),  forgotPasswordDate: z.date({
-    message: "Date is required for Forgot Password.",
+    .string()
+    .trim()
+    .regex(/^(\d[\s-]?){10}$/, {
+      message: "Contact must be of 10 digits",
+    })
+    .transform((val) => val.replace(/\D/g, ""))
+    .refine((val) => val.length === 10, {
+      message: "Contact of 10 digits is required",
+    }),
+  forgotPasswordDate: z.date({
+    message: "Date is required to proceed.",
   }),
 });
 
@@ -47,8 +50,28 @@ const ForgotPswdCon = () => {
     },
   });
 
-  const handleSubmit = (data) => {
-    navigate("/forgot-password");
+  const handleSubmit = async (data) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/users/forgot-password-confirmation",
+        data,
+      );
+      if (response.status === 200) {
+        navigate("/forgot-password");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Validation Failed", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
     console.log(data);
   };
 
@@ -67,7 +90,7 @@ const ForgotPswdCon = () => {
             >
               <FormField
                 control={form.control}
-                name="email"
+                name="phone"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-xs font-bold uppercase text-zinc-500 dark:text-white">
@@ -77,7 +100,6 @@ const ForgotPswdCon = () => {
                       <Input
                         className="focus-visible: border-0 bg-slate-100 text-black ring-offset-0 focus-visible:ring-0 dark:bg-slate-500 dark:text-white"
                         placeholder="Enter Contact Number"
-                        type='number'
                         {...field}
                       />
                     </FormControl>

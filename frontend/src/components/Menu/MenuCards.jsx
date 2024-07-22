@@ -11,11 +11,7 @@ import { Price } from "./Modal/Price";
 export default function MenuCards({ carouselItems, title }) {
   return (
     <div>
-      <Carousel
-        autoFocus
-        plugins={[Autoplay({ delay: 3000 })]}
-        className="w-full"
-      >
+      <Carousel plugins={[Autoplay({ delay: 3000 })]} className="w-full">
         <CarouselContent>
           {carouselItems.map((items, index) => (
             <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">

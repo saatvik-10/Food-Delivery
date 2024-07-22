@@ -84,7 +84,7 @@ const updateUser = asyncHandler(async (req, res) => {
     res.status(200).json({
       _id: updatedUser._id,
       name: updatedUser.name,
-      phone: updateUser.phone,
+      phone: updatedUser.phone,
       address: updatedUser.address,
     });
   } else {
@@ -93,4 +93,23 @@ const updateUser = asyncHandler(async (req, res) => {
   }
 });
 
-export { loginUser, registerUser, updateUser, getUser };
+const forgotPassUser = asyncHandler(async (req, res) => {
+  const { phone, forgotPasswordDate } = req.body;
+
+  const user = await User.findOne({ phone });
+
+  if (!user) {
+    return res.status(400).json({ message: "User not found" });
+  }
+
+  if (
+    new Date(user.forgotPasswordDate).toDateString() ===
+    new Date(forgotPasswordDate).toDateString()
+  ) {
+    return res.status(201).json({ message: "User validated" });
+  } else {
+    return res.status(400).json({ message: "Date does not match" });
+  }
+});
+
+export { loginUser, registerUser, updateUser, getUser, forgotPassUser };
