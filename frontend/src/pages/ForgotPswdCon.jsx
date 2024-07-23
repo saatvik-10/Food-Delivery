@@ -56,7 +56,7 @@ const ForgotPswdCon = () => {
         "http://localhost:5000/api/users/forgot-password-confirmation",
         data,
       );
-      if (response.status === 200) {
+      if (response.status === 201) {
         navigate("/forgot-password");
       }
     } catch (error) {

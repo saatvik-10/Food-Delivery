@@ -8,9 +8,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../../ui/dialog";
-import { RadioGrp } from "./RadioGrp/RadioGrp";
+// import { RadioGrp } from "./RadioGrp/RadioGrp";
+import Counter from "../Modal/Counter";
 
 export function Price({ subTitle, price1, price2 }) {
+  const prices = [price1, price2];
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -25,7 +27,7 @@ export function Price({ subTitle, price1, price2 }) {
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid items-center">
-            <RadioGrp price1={price1} price2={price2} />
+            <Counter prices={prices} />
           </div>
         </div>
         <DialogFooter>
