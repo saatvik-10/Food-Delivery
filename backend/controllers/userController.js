@@ -72,11 +72,6 @@ const updateUser = asyncHandler(async (req, res) => {
   if (user) {
     user.name = req.body.name || user.name;
     user.phone = req.body.phone || user.phone;
-
-    if (req.body.password) {
-      user.password = req.body.password;
-    }
-
     user.address = req.body.address || user.address;
 
     const updatedUser = await user.save();
@@ -118,5 +113,25 @@ const forgotPassUser = asyncHandler(async (req, res) => {
   }
 });
 
+// const forgotPassword = asyncHandler(async(req,res)=>{
+//   const {phone} = req.body;
+
+//   const user = await User.findOne({phone});
+
+//   if (user){
+//     if (req.body.password) {
+//       user.password = req.body.password;
+//     }
+//     const updatedUser = await user.save();
+
+//     res.status(200).json({
+//       // password:updatedUser.password;
+//         message:"Password updated successfully"
+//     });
+//   } else {
+//     res.status(400);
+//     throw new Error("User not found");
+//   }
+// })
 
 export { loginUser, registerUser, updateUser, getUser, forgotPassUser };

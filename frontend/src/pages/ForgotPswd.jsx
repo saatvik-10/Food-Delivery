@@ -19,6 +19,9 @@ import {
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import {useEffect} from 'react';
+import axios from 'axios';
 
 const formSchema = z.object({
   newPassword: z.string().min(1, {
@@ -40,9 +43,57 @@ const ForgotPswd = () => {
     },
   });
 
-  const handleSubmit = (data) => {
-    navigate("/login");
-    console.log(data);
+  // useEffect(() => {
+  //     const isValidated = localStorage.getItem("isValidated");
+  //     if (!isValidated) {
+  //       navigate("/forgot-password-confirmation");
+  //     }
+  //   }, [navigate]);
+
+  const handleSubmit = async(data) => {
+    if (data.password !== data.confirmPassword) {
+      toast.error("Passwords do not match", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
+    try {
+         const response = await axios.post(
+           "http://localhost:5000/api/users/forgot-password",
+           data,
+         );
+         if (response.status === 200) {
+           toast.success("Password reset successful", {
+             position: "bottom-right",
+             autoClose: 5000,
+             hideProgressBar: false,
+             closeOnClick: true,
+             pauseOnHover: true,
+             draggable: true,
+             progress: undefined,
+             theme: "dark",
+           });
+           navigate("/login");
+         }
+       } catch (error) {
+         console.log(error);
+         toast.error("Password reset failed", {
+           position: "bottom-right",
+           autoClose: 5000,
+           hideProgressBar: false,
+           closeOnClick: true,
+           pauseOnHover: true,
+           draggable: true,
+           progress: undefined,
+           theme: "dark",
+         });
+       }
   };
 
   return (

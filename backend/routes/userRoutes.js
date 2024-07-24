@@ -14,5 +14,6 @@ router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.route("/profile").get(protect, getUser).put(protect, updateUser);
 router.post("/forgot-password-confirmation", forgotPassUser);
+// router.route("/forgot-password").put(forgotPassword);
 
 export default router;

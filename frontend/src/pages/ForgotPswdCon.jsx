@@ -57,6 +57,7 @@ const ForgotPswdCon = () => {
         data,
       );
       if (response.status === 201) {
+        // localStorage.setItem("isValidated", true);
         navigate("/forgot-password");
         toast.success("Validation Succesful", {
           position: "bottom-right",
