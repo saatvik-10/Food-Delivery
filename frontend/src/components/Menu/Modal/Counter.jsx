@@ -16,14 +16,6 @@ const Counter = ({ prices }) => {
     setCount(newCounts);
   };
 
-  // const increment2 = () => {
-  //   setCount2(count2 + 1);
-  // };
-
-  // const decrement2 = () => {
-  //   setCount2(count2 > 0 ? count2 - 1 : 0);
-  //};
-
   return (
     <div className="space-y-4">
       {prices.map((price, index) => (

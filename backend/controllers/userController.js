@@ -96,20 +96,27 @@ const updateUser = asyncHandler(async (req, res) => {
 const forgotPassUser = asyncHandler(async (req, res) => {
   const { phone, forgotPasswordDate } = req.body;
 
+  // console.log("Received phone:", phone);
+  // console.log("Received forgotPasswordDate:", forgotPasswordDate);
+
   const user = await User.findOne({ phone });
 
   if (!user) {
     return res.status(400).json({ message: "User not found" });
   }
 
-  if (
-    new Date(user.forgotPasswordDate).toDateString() ===
-    new Date(forgotPasswordDate).toDateString()
-  ) {
+  const storedDate = new Date(user.date).toDateString();
+  const receivedDate = new Date(forgotPasswordDate).toDateString();
+
+  // console.log("Stored date:", storedDate);
+  // console.log("Received date:", receivedDate);
+
+  if (storedDate === receivedDate) {
     return res.status(201).json({ message: "User validated" });
   } else {
     return res.status(400).json({ message: "Date does not match" });
   }
 });
+
 
 export { loginUser, registerUser, updateUser, getUser, forgotPassUser };
