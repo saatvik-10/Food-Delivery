@@ -58,6 +58,16 @@ const ForgotPswdCon = () => {
       );
       if (response.status === 201) {
         navigate("/forgot-password");
+        toast.success("Validation Succesful", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       }
     } catch (error) {
       console.log(error);
