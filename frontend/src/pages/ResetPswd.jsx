@@ -20,19 +20,19 @@ import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import {useEffect} from 'react';
-import axios from 'axios';
+import { useEffect } from "react";
+import axios from "axios";
 
 const formSchema = z.object({
   newPassword: z.string().min(1, {
-    message: "New Password is required",
+    message: "Enter new password",
   }),
   confirmNewPassword: z.string().min(1, {
-    message: "Confirm New Password is required",
+    message: "Confirm your new password",
   }),
 });
 
-const ForgotPswd = () => {
+const ResetPswd = () => {
   const navigate = useNavigate();
 
   const form = useForm({
@@ -44,14 +44,27 @@ const ForgotPswd = () => {
   });
 
   // useEffect(() => {
-  //     const isValidated = localStorage.getItem("isValidated");
-  //     if (!isValidated) {
+  //   const checkValidation = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         "http://localhost:5000/api/users/reset-password",
+  //         { withCredentials: true }, // Include cookies in the request
+  //       );
+  //       if (response.status === 200) {
+  //         setIsValidated(true);
+  //       } else {
+  //         navigate("/forgot-password-confirmation");
+  //       }
+  //     } catch (error) {
   //       navigate("/forgot-password-confirmation");
   //     }
-  //   }, [navigate]);
+  //   };
 
-  const handleSubmit = async(data) => {
-    if (data.password !== data.confirmPassword) {
+  //   checkValidation();
+  // }, [navigate]);
+
+  const handleSubmit = async (data) => {
+    if (data.newPassword !== data.confirmNewPassword) {
       toast.error("Passwords do not match", {
         position: "bottom-right",
         autoClose: 5000,
@@ -64,36 +77,36 @@ const ForgotPswd = () => {
       });
     }
     try {
-         const response = await axios.post(
-           "http://localhost:5000/api/users/forgot-password",
-           data,
-         );
-         if (response.status === 200) {
-           toast.success("Password reset successful", {
-             position: "bottom-right",
-             autoClose: 5000,
-             hideProgressBar: false,
-             closeOnClick: true,
-             pauseOnHover: true,
-             draggable: true,
-             progress: undefined,
-             theme: "dark",
-           });
-           navigate("/login");
-         }
-       } catch (error) {
-         console.log(error);
-         toast.error("Password reset failed", {
-           position: "bottom-right",
-           autoClose: 5000,
-           hideProgressBar: false,
-           closeOnClick: true,
-           pauseOnHover: true,
-           draggable: true,
-           progress: undefined,
-           theme: "dark",
-         });
-       }
+      const response = await axios.post(
+        "http://localhost:5000/api/users/reset-password",
+        { ...data },
+      );
+      if (response.status === 200) {
+        toast.success("Password reset successful", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        navigate("/login");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Error while resetting the password", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
   };
 
   return (
@@ -162,4 +175,4 @@ const ForgotPswd = () => {
   );
 };
 
-export default ForgotPswd;
+export default ResetPswd;

@@ -113,25 +113,30 @@ const forgotPassUser = asyncHandler(async (req, res) => {
   }
 });
 
-// const forgotPassword = asyncHandler(async(req,res)=>{
-//   const {phone} = req.body;
+const resetPassword = asyncHandler(async (req, res) => {
+  const { newPassword } = req.body;
 
-//   const user = await User.findOne({phone});
+  const user = await User.findById(req.user._id);
 
-//   if (user){
-//     if (req.body.password) {
-//       user.password = req.body.password;
-//     }
-//     const updatedUser = await user.save();
+  if (user) {
+    user.password = req.body.newPassword;
+    await user.save();
 
-//     res.status(200).json({
-//       // password:updatedUser.password;
-//         message:"Password updated successfully"
-//     });
-//   } else {
-//     res.status(400);
-//     throw new Error("User not found");
-//   }
-// })
+    res.status(200).json({
+      // password:updatedUser.password;
+      message: "Password updated successfully",
+    });
+  } else {
+    res.status(400);
+    throw new Error("User not found");
+  }
+});
 
-export { loginUser, registerUser, updateUser, getUser, forgotPassUser };
+export {
+  loginUser,
+  registerUser,
+  updateUser,
+  getUser,
+  forgotPassUser,
+  resetPassword,
+};

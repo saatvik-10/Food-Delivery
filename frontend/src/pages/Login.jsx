@@ -101,7 +101,7 @@ const LoginForm = () => {
         <CardHeader>
           <CardTitle className="text-center">Login</CardTitle>
           <CardDescription className="text-center">
-            Enter your email and password to login
+            Enter your contact and password to login
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-2">

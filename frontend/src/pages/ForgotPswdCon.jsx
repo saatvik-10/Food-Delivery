@@ -55,10 +55,13 @@ const ForgotPswdCon = () => {
       const response = await axios.post(
         "http://localhost:5000/api/users/forgot-password-confirmation",
         data,
+        {
+          withCredentials: true,
+        },
       );
       if (response.status === 201) {
         // localStorage.setItem("isValidated", true);
-        navigate("/forgot-password");
+        navigate("/reset-password");
         toast.success("Validation Succesful", {
           position: "bottom-right",
           autoClose: 5000,

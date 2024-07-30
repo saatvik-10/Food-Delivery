@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
   const loginPath = "/login";
   const registerPath = "/register";
   const fPswdConPath = "/forgot-password-confirmation";
-  const fPswdCon = "/forgot-password";
+  const rPswd = "/reset-password";
   const profile = "/profile";
 
   const [loading, setLoading] = useState(0);
@@ -50,7 +50,7 @@ const Layout = ({ children }) => {
           </span>
         ) : location.pathname === fPswdConPath ? (
           ""
-        ) : location.pathname === fPswdCon ? (
+        ) : location.pathname === rPswd ? (
           ""
         ) : location.pathname === profile ? (
           ""
@@ -61,7 +61,7 @@ const Layout = ({ children }) => {
         {location.pathname !== loginPath &&
           location.pathname !== registerPath &&
           location.pathname !== fPswdConPath &&
-          location.pathname !== fPswdCon &&
+          location.pathname !== rPswd &&
           location.pathname !== profile && <Footer />}
       </div>
     );

@@ -19,14 +19,25 @@ const Counter = ({ prices }) => {
   return (
     <div className="space-y-4">
       {prices.map((price, index) => (
-        <div key={index} className="flex items-center justify-between">
+        <div
+          key={index}
+          className="flex items-center justify-between font-semibold text-orange-600"
+        >
           <div>{price}</div>
           <div className="flex items-center space-x-2">
-            <Button variant="ghost" onClick={() => decrement(index)}>
+            <Button
+              className="bg-orange-100"
+              variant="ghost"
+              onClick={() => decrement(index)}
+            >
               -
             </Button>
             <span>{count[index]}</span>
-            <Button variant="ghost" onClick={() => increment(index)}>
+            <Button
+              className="bg-orange-100"
+              variant="ghost"
+              onClick={() => increment(index)}
+            >
               +
             </Button>
           </div>
