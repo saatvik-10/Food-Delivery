@@ -5,6 +5,7 @@ import logo from "./images/cook.png";
 import { LogIn, ShoppingBag } from "lucide-react";
 import { useEffect, useState } from "react";
 import Profile from "./Avatar/page";
+import { toast } from "react-toastify";
 
 export default function Component() {
   const [loginUser, setloginUser] = useState("");
@@ -15,6 +16,12 @@ export default function Component() {
       setloginUser(user);
     }
   }, []);
+
+  const handleUser = () => {
+    if (!loginUser) {
+      toast.error("Login to access the cart");
+    }
+  };
 
   return (
     <div className="fixed top-0 z-50 flex w-full items-center justify-between bg-gray-900 px-4 py-2">
@@ -35,13 +42,22 @@ export default function Component() {
         >
           Menu
         </Link>
-        <Link
-          className="flex items-center gap-2 text-lg font-medium underline-offset-4 hover:underline"
-          to="/cart"
-        >
-          Cart
-          <ShoppingBag size={17} />
-        </Link>
+        {loginUser ? (
+          <Link
+            className="flex items-center gap-2 text-lg font-medium underline-offset-4 hover:underline"
+            to="/cart"
+          >
+            Cart
+            <ShoppingBag size={17} />
+          </Link>
+        ) : (
+          <div
+            className="flex cursor-pointer items-center gap-2 text-lg font-medium underline-offset-4 hover:underline"
+            onClick={handleUser}
+          >
+            Cart <ShoppingBag size={17} />
+          </div>
+        )}
       </div>
       <div className="mr-5 hidden gap-4 text-white md:flex">
         {loginUser ? (
@@ -65,7 +81,10 @@ export default function Component() {
             {loginUser ? (
               <Profile loginUser={loginUser} />
             ) : (
-              <Link to="/login" className="flex gap-2 text-lg font-medium">
+              <Link
+                to="/login"
+                className="flex gap-2 text-lg font-medium text-black"
+              >
                 <LogIn />
                 Login
               </Link>
@@ -84,12 +103,21 @@ export default function Component() {
             >
               Menu
             </Link>
-            <Link
-              className="text-lg font-medium underline-offset-4 hover:underline"
-              to="/cart"
-            >
-              Cart
-            </Link>
+            {loginUser ? (
+              <Link
+                className="flex items-center gap-2 text-lg font-medium underline-offset-4 hover:underline"
+                to="/cart"
+              >
+                Cart
+              </Link>
+            ) : (
+              <div
+                className="flex cursor-pointer items-center gap-2 text-lg font-medium underline-offset-4 hover:underline"
+                onClick={handleUser}
+              >
+                Cart
+              </div>
+            )}
           </div>
         </SheetContent>
       </Sheet>
