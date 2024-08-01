@@ -1,18 +1,8 @@
 import { ShoppingCart } from "lucide-react";
 import React from "react";
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
-  const [loginUser, setLoginUser] = useState("");
-
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-      setLoginUser(user);
-    }
-  }, []);
-
   return (
     <div className="h-full w-full text-center">
       <span className="text-4xl font-semibold text-red-600 md:text-6xl">
