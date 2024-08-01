@@ -1,14 +1,12 @@
+import dotenv from "dotenv/config";
 import express from "express";
 import path from "path";
 import dbConnect from "./config/dbConnect.js";
-import dotenv from "dotenv";
 import colors from "colors";
 import userRoutes from "./routes/userRoutes.js";
 import { errHandler, notFound } from "./middlewares/errMiddleware.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-
-dotenv.config();
 
 dbConnect();
 
