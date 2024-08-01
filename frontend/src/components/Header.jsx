@@ -51,12 +51,13 @@ export default function Component() {
             <ShoppingBag size={17} />
           </Link>
         ) : (
-          <div
+          <Link
             className="flex cursor-pointer items-center gap-2 text-lg font-medium underline-offset-4 hover:underline"
             onClick={handleUser}
+            to="/login"
           >
             Cart <ShoppingBag size={17} />
-          </div>
+          </Link>
         )}
       </div>
       <div className="mr-5 hidden gap-4 text-white md:flex">
@@ -111,12 +112,13 @@ export default function Component() {
                 Cart
               </Link>
             ) : (
-              <div
+              <Link
                 className="flex cursor-pointer items-center gap-2 text-lg font-medium underline-offset-4 hover:underline"
                 onClick={handleUser}
+                to="/login"
               >
                 Cart
-              </div>
+              </Link>
             )}
           </div>
         </SheetContent>
