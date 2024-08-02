@@ -12,9 +12,11 @@ import Register from "./pages/Register.jsx";
 import ForgotPswdCon from "./pages/ForgotPswdCon.jsx";
 import ResetPswd from "./pages/ResetPswd.jsx";
 import UserProfile from "./pages/Profile.jsx";
+import CartProvider from "./hooks/useCart.jsx";
 
 const App = () => {
   return (
+    // <CartProvider>
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -40,6 +42,7 @@ const App = () => {
         />
       </Routes>
     </Layout>
+    // </CartProvider>
   );
 };
 

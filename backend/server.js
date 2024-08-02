@@ -4,6 +4,7 @@ import path from "path";
 import dbConnect from "./config/dbConnect.js";
 import colors from "colors";
 import userRoutes from "./routes/userRoutes.js";
+import ucartRoutes from "./routes/ucartRoutes.js";
 import { errHandler, notFound } from "./middlewares/errMiddleware.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -25,6 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use("/api/users", userRoutes);
+app.use("/api/users/cart", ucartRoutes);
 
 app.get("/", (req, res) => res.send("Server is ready"));
 
