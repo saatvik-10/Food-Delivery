@@ -21,7 +21,7 @@ const getCartItems = asyncHandler(async (req, res) => {
 
   const cartItems = await UCart.findOne({ userId });
 
-  req.status(200).json(cartItems);
+  res.status(201).json(cartItems);
 });
 
 export { addToCart, getCartItems };

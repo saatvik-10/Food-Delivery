@@ -1,24 +1,13 @@
 // import React from "react";
-// import { useContext } from "react";
-// import { useReducer } from "react";
-// import { createContext } from "react";
+// import { useState, useEffect } from "react";
+// import axios from "axios";
 
-// const CartStateContext = createContext();
-// const CartDispatchContext = createContext();
+// const useCart = () => {
+//   const [cartItems, setCartItems] = useState();
 
-// const reducer = (state, action) => {};
-
-// export default function CartProvider({ children }) {
-//   const [state, dispatch] = useReducer(reducer, []);
-
-//   return (
-//     <CartDispatchContext.Provider value={dispatch}>
-//       <CartStateContext.Provider value={state}>
-//         {children}
-//       </CartStateContext.Provider>
-//     </CartDispatchContext.Provider>
-//   );
-// }
-
-// export const useCart = () => useContext(CartStateContext);
-// export const useDispatchCart = () => useContext(CartDispatchContext);
+//   useEffect(() => {
+//     const fetchCartItems = async (data) => {
+//       const { data } = axios.get("https://localhost:500/api/cart/items", {});
+//     };
+//   }, []);
+// };

@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use("/api/users", userRoutes);
-app.use("/api/users/cart", ucartRoutes);
+app.use("/api/users", ucartRoutes);
 
 app.get("/", (req, res) => res.send("Server is ready"));
 
