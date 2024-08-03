@@ -15,22 +15,46 @@ import { useState } from "react";
 
 export function Price({ subTitle, price1, price2 }) {
   const prices = [price1, price2];
-  const [counter, setCounter] = useState("");
-  const selectedPrice = price2;
+  const [counter, setCounter] = useState([]);
 
-  const handleAddToCart = async () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userId = user?.id;
+
+  const handleAddToCart = async (data) => {
     try {
-      // const response = await axios.post(
-      //   "http://localhost:5000/api/users/cart",
+      const selectedItems = counter
+        .map((count, index) => ({ count, price: prices[index] }))
+        .filter((item) => item.count > 0);
+
+      if (selectedItems.length === 0) {
+        toast.error("Please select at least one item", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        return;
+      }
       const data = {
         subTitle,
-        counter,
-        price: selectedPrice,
+        selectedItems,
       };
-      //   { withCredentials: true },
-      // );
-      console.log(data);
-      // localStorage.setItem("user", JSON.stringify(response.data));
+
+      const response = await axios.post(
+        "http://localhost:5000/api/users/cart",
+        {
+          userId: userId,
+          name: data.subTitle,
+          amount: data.selectedItems,
+        },
+        { withCredentials: true },
+      );
+
+      console.log(response.data);
       toast.success("Items added to cart successfully", {
         position: "bottom-right",
         autoClose: 5000,

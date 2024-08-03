@@ -1,8 +1,13 @@
 import { useState } from "react";
 import { Button } from "../../ui/button";
+import { useEffect } from "react";
 
-const Counter = ({ prices }) => {
+const Counter = ({ prices, setCounter }) => {
   const [count, setCount] = useState(prices.map(() => 0));
+
+  useEffect(() => {
+    setCounter(count);
+  }, [count, setCounter]);
 
   const increment = (index) => {
     const newCounts = [...count];

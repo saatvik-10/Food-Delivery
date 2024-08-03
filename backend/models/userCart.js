@@ -10,11 +10,7 @@ const userCart = mongoose.Schema({
     required: true,
   },
   amount: {
-    type: Number,
-    required: true,
-  },
-  date: {
-    type: Date,
+    type: Array,
     required: true,
   },
 });
