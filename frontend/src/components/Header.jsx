@@ -57,6 +57,9 @@ export default function Component() {
             to="/login"
           >
             Cart <ShoppingBag size={17} />
+            <span className="-ml-1 inline-flex size-5 items-center justify-center rounded-full bg-white text-xs font-bold text-gray-900">
+              10
+            </span>
           </Link>
         )}
       </div>
@@ -110,6 +113,10 @@ export default function Component() {
                 to="/cart"
               >
                 Cart
+                <ShoppingBag size={17} />
+                <span className="-ml-1 inline-flex size-5 items-center justify-center rounded-full bg-gray-900 text-xs font-bold text-white">
+                  10
+                </span>
               </Link>
             ) : (
               <Link
@@ -117,7 +124,7 @@ export default function Component() {
                 onClick={handleUser}
                 to="/login"
               >
-                Cart
+                Cart <ShoppingBag size={17} />
               </Link>
             )}
           </div>

@@ -7,7 +7,6 @@ import {
   CarouselItem,
 } from "../../../src/components/ui/carousel";
 import { Price } from "./Modal/Price";
-// import { useCart, useDispatchCart } from "../../hooks/useCart";
 
 export default function MenuCards({ carouselItems, title }) {
   return (

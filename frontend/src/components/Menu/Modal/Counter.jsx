@@ -1,21 +1,19 @@
 import { useState } from "react";
 import { Button } from "../../ui/button";
 
-const Counter = ({ prices, setCounts }) => {
+const Counter = ({ prices }) => {
   const [count, setCount] = useState(prices.map(() => 0));
 
   const increment = (index) => {
     const newCounts = [...count];
     newCounts[index] += 1;
     setCount(newCounts);
-    // setCounts(newCounts);
   };
 
   const decrement = (index) => {
     const newCounts = [...count];
     newCounts[index] = newCounts[index] > 0 ? newCounts[index] - 1 : 0;
     setCount(newCounts);
-    // setCounts(newCounts);
   };
 
   return (

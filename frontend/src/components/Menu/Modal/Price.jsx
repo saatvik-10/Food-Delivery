@@ -16,7 +16,7 @@ import { useState } from "react";
 export function Price({ subTitle, price1, price2 }) {
   const prices = [price1, price2];
   const [counter, setCounter] = useState("");
-  const selectedPrice = prices.map((pr) => pr.prices);
+  const selectedPrice = price2;
 
   const handleAddToCart = async () => {
     try {
