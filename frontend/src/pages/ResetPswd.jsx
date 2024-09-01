@@ -20,7 +20,6 @@ import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useEffect } from "react";
 import axios from "axios";
 
 const formSchema = z.object({
@@ -43,26 +42,6 @@ const ResetPswd = () => {
     },
   });
 
-  // useEffect(() => {
-  //   const checkValidation = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         "http://localhost:5000/api/users/reset-password",
-  //         { withCredentials: true }, // Include cookies in the request
-  //       );
-  //       if (response.status === 200) {
-  //         setIsValidated(true);
-  //       } else {
-  //         navigate("/forgot-password-confirmation");
-  //       }
-  //     } catch (error) {
-  //       navigate("/forgot-password-confirmation");
-  //     }
-  //   };
-
-  //   checkValidation();
-  // }, [navigate]);
-
   const handleSubmit = async (data) => {
     if (data.newPassword !== data.confirmNewPassword) {
       toast.error("Passwords do not match", {
@@ -79,7 +58,8 @@ const ResetPswd = () => {
     try {
       const response = await axios.post(
         "http://localhost:5000/api/users/reset-password",
-        { ...data },
+        data,
+        { withCredentials: true },
       );
       if (response.status === 200) {
         toast.success("Password reset successful", {

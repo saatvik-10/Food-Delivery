@@ -59,7 +59,7 @@ const ForgotPswdCon = () => {
           withCredentials: true,
         },
       );
-      if (response.status === 201) {
+      if (response.status === 200) {
         // localStorage.setItem("isValidated", true);
         navigate("/reset-password");
         toast.success("Validation Succesful", {
