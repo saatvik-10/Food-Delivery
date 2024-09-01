@@ -55,7 +55,7 @@ const UserProfile = () => {
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const token = JSON.parse(localStorage.getItem("jwt"));
+        const token = JSON.parse(localStorage.getItem("user"));
         const response = await axios.get(
           "http://localhost:5000/api/users/profile",
           {
@@ -113,7 +113,7 @@ const UserProfile = () => {
 
   const handleSubmit = async (data) => {
     try {
-      const token = JSON.parse(localStorage.getItem("jwt"));
+      const token = JSON.parse(localStorage.getItem("user"));
       const response = await axios.put(
         "http://localhost:5000/api/users/profile",
         { ...data },

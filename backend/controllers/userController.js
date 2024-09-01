@@ -1,6 +1,7 @@
 import User from "../models/userModel.js";
 import asyncHandler from "express-async-handler";
 import generateToken from "../utils/generateToken.js";
+import generateTempToken from "../utils/generateTempToken.js";
 
 const registerUser = asyncHandler(async (req, res) => {
   const { name, phone, password, date, address } = req.body;
@@ -100,19 +101,22 @@ const forgotPassUser = asyncHandler(async (req, res) => {
   const receivedDate = new Date(forgotPasswordDate).toDateString();
 
   if (storedDate === receivedDate) {
-    return res.status(201).json({ message: "User validated" });
+    const token = generateTempToken(res, user._id);
+
+    return res.status(200).json({ message: "User validated", token });
   } else {
     return res.status(400).json({ message: "Date does not match" });
   }
 });
 
+// Reset user password
 const resetPassword = asyncHandler(async (req, res) => {
   const { newPassword } = req.body;
 
   const user = await User.findById(req.user._id);
 
   if (user) {
-    user.password = req.body.newPassword;
+    user.password = newPassword;
     await user.save();
 
     res.status(200).json({

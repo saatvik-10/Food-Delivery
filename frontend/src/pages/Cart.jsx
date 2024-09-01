@@ -12,7 +12,8 @@ const Cart = () => {
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const token = JSON.parse(localStorage.getItem("jwt"));
+        const user = JSON.parse(localStorage.getItem("user"));
+        const token = user.id;
         const response = await axios.get(
           "http://localhost:5000/api/users/cart",
           {
@@ -24,7 +25,7 @@ const Cart = () => {
         );
         console.log(response.data);
         if (response.data) {
-          setCartItems(cartItems);
+          setCartItems(response.data);
         }
       } catch (error) {
         console.error("Error fetching user profile", error);
@@ -41,7 +42,7 @@ const Cart = () => {
       }
     };
     fetchCartItems();
-  }, [cartItems]);
+  }, []);
 
   return (
     <div className="w-full">
@@ -50,7 +51,7 @@ const Cart = () => {
           ITEMS YOU HAVE ADDED !
         </span>
         <div className="grid grid-cols-2">
-          {/* <span>{cartItems.amount}</span> */}
+          <span>{cartItems}</span>
         </div>
       </div>
 
