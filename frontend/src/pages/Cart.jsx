@@ -12,19 +12,18 @@ const Cart = () => {
     const fetchCartItems = async () => {
       try {
         const user = JSON.parse(localStorage.getItem("user"));
-        const token = user.id;
+        const userId = user?.id;
         const response = await axios.get(
-          "http://localhost:5000/api/users/cart",
+          `http://localhost:5000/api/users/cart`,
           {
-            headers: {
-              Authorization: `Bearer ${token}`,
+            params: {
+              userId,
             },
-            withCredentials: true,
           },
         );
-        console.log(response.data);
         if (response.data) {
           setCartItems(response.data);
+          console.log(response.data);
         }
       } catch (error) {
         console.error("Error fetching user profile", error);
@@ -80,7 +79,7 @@ const Cart = () => {
                 className="rounded border border-gray-200 p-4 shadow"
               >
                 <h2 className="text-xl font-bold">{item.name}</h2>
-                <p>Amount: {item.amount}</p>
+                <p>Amount:{item.amount[0].price}</p>
               </div>
             ))}
           </div>
