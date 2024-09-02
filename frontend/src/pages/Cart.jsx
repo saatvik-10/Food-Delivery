@@ -1,8 +1,10 @@
 import axios from "axios";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, Trash2 } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Button } from "../components/ui/button";
+import { Separator } from "../components/ui/separator";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -69,19 +71,25 @@ const Cart = () => {
         </div>
       ) : (
         <div>
-          <span className="flex items-center justify-center text-4xl font-semibold text-red-600 md:text-6xl">
+          <span className="mb-8 flex items-center justify-center text-4xl font-semibold text-red-600 md:text-6xl">
             ITEMS YOU HAVE ADDED!
           </span>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4">
             {cartItems.map((item, index) => (
               <div
                 key={index}
-                className="rounded border border-gray-200 p-4 shadow"
+                className="flex items-center justify-between rounded border border-gray-200 p-4 shadow"
               >
-                <h2 className="text-xl font-bold">{item.name}</h2>
-                <p>Amount:{item.amount[0].price}</p>
+                <div>
+                  <h2 className="text-xl font-bold">{item.name}</h2>
+                  <p>Amount: {item.amount[0].price}</p>
+                </div>
+                <Button className="bg-white text-red-700 hover:bg-red-700 hover:text-white">
+                  <Trash2 />
+                </Button>
               </div>
             ))}
+            <Separator className="my-10" />
           </div>
         </div>
       )}
