@@ -55,6 +55,39 @@ const Cart = () => {
     }, 0);
   };
 
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/users/cart`, {
+        params: {
+          id,
+        },
+      });
+      setCartItems(cartItems.filter((item) => item._id !== id));
+      toast.success("Item deleted successfully", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    } catch (error) {
+      console.error("Error deleting item", error);
+      toast.error("Unable to delete item", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -95,7 +128,10 @@ const Cart = () => {
                   <h2 className="text-xl font-bold">{item.name} - </h2>
                   <p>Amount: {item.amount[0].price}</p>
                 </div>
-                <Button className="bg-white text-red-700 hover:bg-red-700 hover:text-white">
+                <Button
+                  onClick={() => handleDelete(item._id)}
+                  className="bg-white text-red-700 hover:bg-red-700 hover:text-white"
+                >
                   <Trash2 />
                 </Button>
               </div>
