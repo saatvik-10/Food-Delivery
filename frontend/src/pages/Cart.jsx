@@ -46,9 +46,20 @@ const Cart = () => {
     fetchCartItems();
   }, []);
 
+  const calculateTotalPrice = () => {
+    return cartItems.reduce((total, item) => {
+      const priceString = item.amount[0].price;
+      const priceMatch = priceString.match(/Rs\.(\d+)/);
+      const priceNumber = priceMatch ? parseFloat(priceMatch[1]) : 0;
+      return total + priceNumber;
+    }, 0);
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
+
+  const totalPrice = calculateTotalPrice();
 
   return (
     <div className="w-full">
@@ -66,7 +77,7 @@ const Cart = () => {
             cuisine from some of the finest chefs out there...HURRY UP!!!
           </p>
           <span className="flex items-center justify-center text-xl font-semibold text-black md:text-start md:text-2xl lg:text-3xl">
-            <Link to="/menu">Click here to order yours now !</Link>
+            <Link to="/menu">Click here to order yours now!</Link>
           </span>
         </div>
       ) : (
@@ -81,7 +92,7 @@ const Cart = () => {
                 className="flex items-center justify-between rounded border border-gray-200 p-4 shadow"
               >
                 <div>
-                  <h2 className="text-xl font-bold">{item.name}</h2>
+                  <h2 className="text-xl font-bold">{item.name} - </h2>
                   <p>Amount: {item.amount[0].price}</p>
                 </div>
                 <Button className="bg-white text-red-700 hover:bg-red-700 hover:text-white">
@@ -89,7 +100,11 @@ const Cart = () => {
                 </Button>
               </div>
             ))}
-            <Separator className="my-10" />
+            <Separator className="my-8" />
+            <div className="flex items-center justify-between rounded border border-gray-200 p-4 text-right text-2xl font-semibold shadow">
+              <span>Total Price:</span>
+              <span className="text-red-700">Rs. {totalPrice}</span>
+            </div>
           </div>
         </div>
       )}
