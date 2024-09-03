@@ -2,12 +2,13 @@ import UCart from "../models/userCart.js";
 import asyncHandler from "express-async-handler";
 
 const addToCart = asyncHandler(async (req, res) => {
-  const { userId, name, amount } = req.body;
+  const { userId, name, quantity, price } = req.body;
 
   const cartItem = new UCart({
     userId,
     name,
-    amount,
+    quantity,
+    price,
   });
 
   await cartItem.save();
